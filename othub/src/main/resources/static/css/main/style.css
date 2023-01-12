@@ -1,0 +1,187 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Della+Respira&family=Kaushan+Script&family=Playball&display=swap');
+@font-face {
+    font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+/* 전체 스타일 설정*/
+body{
+	margin:0;
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+   	flex-direction: column;
+   	font-family: 'LeferiBaseType-RegularA';
+   	font-size: 14px;
+}
+a:link, a:visited {
+    text-decoration: none;
+    color : rgb(95, 95, 95);
+}
+li {
+	list-style: none;
+}
+
+
+
+
+/* header , navbar*/
+.nav{
+	padding: 14px 50px 0;
+}
+.nav_toggleBtn {
+	display:none;
+	position:absolute;
+	top: 31px;
+	right: 60px;
+	font-size: 19px;
+	color : pink;
+}
+.nav_bar1 {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+}
+.nav_bar2 {
+	padding : 0.5em 0;
+	text-align: right;
+}
+.nav_logo > a {
+	font-family: 'Playball', cursive;
+	font-weight: 500;
+	font-size: 35px;
+	color: black;
+}
+.nav_user_menu {
+	padding-left: 0;
+}
+.nav_user_menu > li {
+	float:left;
+    margin:1px;
+    display:block;
+    padding:5px;
+}
+.nav_bar1 {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+}
+
+.nav_main_menu{
+    margin: 0.2em 0;
+    padding: 0;
+}
+.nav_main_menu > span {
+    border: 1px solid solid rgb(241, 241, 241);
+    border-radius : 2em;
+    display: inline-block;
+    padding: 5px 20px;
+}
+
+.nav_user_menu > li > a,
+.nav_main_menu > span > a{
+	display: inline-block;
+	transition: .3s;
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+.nav_user_menu > li > a:hover,
+.nav_main_menu > span > a:hover{
+    -webkit-transform: scale(1.1);
+  	transform: scale(1.1);
+  	color:black;
+  	font-weight: 500;
+}
+
+
+
+
+
+/* main */
+main {
+}
+.main > img {
+	width:100%;
+}
+
+
+
+
+
+
+/* footer */
+.footer_line{
+	margin:0;
+	height:1px;
+	background-color:rgb(240, 240, 240);
+}
+.footer{
+	height: 150px;
+	position:asolute !important;
+	background-color: #ffffff;
+	padding: 30px 30px 0; 
+}
+.footer span a {
+	font-size:11px;
+	padding: 10px 10px 7px;
+	margin:3px;
+	border: 1px solid rgb(236, 236, 236);
+	border-radius: 6px;
+	display: inline-block;
+	color: rgb(192, 192, 192);
+}
+
+
+
+
+
+/* 반응형 */
+@media screen and (max-width: 768px){
+	/* navbar */
+	.nav{
+		padding: 14px 30px 0;
+	}
+	.nav_toggleBtn {
+		display:block;
+		position:absolute;
+		top: 23px;
+		right: 30px;
+		font-size: 15px;
+		color :  rgb(214, 214, 214);
+	}
+	.nav_bar1 {
+		flex-direction:column;
+		align-items: flex-start;
+	}
+	.nav_user_menu {
+		display:none;
+		flex-direction:column;
+		align-items: center;
+		width:100%;
+	}
+	.nav_user_menu li{
+		width:100%;
+		text-align: center;
+	}
+	.nav_bar2{
+		text-align: center;
+	}
+	.nav_main_menu{
+		display:none;
+	}
+	.nav_user_menu.active{
+		display: flex;
+		align-items:center;
+	}
+	.nav_main_menu.active{
+		display: inline-block;
+	}
+	
+}
+
+

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member.MemberDAO" >
+	
+<!-- 회원가입 -->
+<insert id="insertMember" parameterType="memberdto" >
+ insert into member(m_id,m_pw,m_name,m_address,m_phone,m_email,m_sex) 
+ values (#{m_id},#{m_pw},#{m_name},#{m_address},#{m_phone},#{m_email},#{m_sex}) 
+</insert>
+
+<!-- 회원가입확인 -->
+<select id="insertCheck" resultType="String">
+	select * from member where m_id=#{m_id}	and m_pw=#{m_pw}
+</select>
+
+<!-- 회원정보조회 -->
+<select id="selectOneMember" resultType="memberdto" parameterType="String">
+	select * from member where m_id=#{m_id}
+</select>
+
+<!-- 회원정보수정 -->
+<update id="updateMember" parameterType="memberdto" >
+	update member set m_id=#{m_id}, m_name=#{m_name},m_address=#{m_address} ,m_phone=#{m_phone}, m_email=#{m_email} where m_id=#{m_id}
+</update>
+
+<!-- 아이디체크 -->
+<select id="checkId" resultType="int" parameterType="String">
+	select count(m_id) from member where m_id=#{m_id}
+</select>
+
+<!-- 회원탈퇴 -->
+<delete id="deleteMember" parameterType="String">
+delete from member where m_id=#{m_id}
+</delete>
+
+<!-- 모든 회원정보 조회 -->
+<!-- 회원리스트 조회 -->
+<select id="selectMemberList" resultType="memberdto">
+	select m_id,m_pw,m_name,m_email,m_phone,m_sex,m_address,m_regdate,role1 from member order by role1
+</select>
+
+<!-- 관리자 회원정보 수정 -->
+<update id="updateMemberByAdmin" parameterType="memberdto" >
+	update member set role1=#{role1} where m_id=#{m_id}
+</update>
+
+<!-- 관리자 회원 탈퇴 -->
+<delete id="deleteMemberByAdmin"  parameterType="String">
+	delete from member where m_id=#{m_id}
+</delete>
+
+<!-- 일반 회원 조회 -->
+<select id="selectUserList" resultType="memberdto">
+	select m_id,m_pw,m_name,m_email,m_phone,m_sex,m_address,m_regdate,role1,role2 from member where role1 = 'user' order by field(role2, 'vip','gold','silver')
+</select>
+
+<!-- 일반 회원 등급 변경 -->
+<update id="updateUserRole" parameterType="memberdto" >
+	update member set role2=#{role2} where m_id=#{m_id}
+</update>
+
+<!--  쿠폰 발급 status = 0은 발급 status = 1은 사용한 쿠폰 -->
+<!-- 쿠폰 체크 -->
+<!-- silver -->
+<select id="couponCheckSilver" resultType="int">
+	select count(*) from coupon where cp_m_id = #{m_id} and cp_code = 'silver';
+</select>
+<!-- Gold -->
+<select id="couponCheckGold" resultType="int">
+	select count(*) from coupon where cp_m_id = #{m_id} and cp_code = 'gold';
+</select>
+<!-- Vip -->
+<select id="couponCheckVip" resultType="int">
+	select count(*) from coupon where cp_m_id = #{m_id} and cp_code = 'vip';
+</select>
+
+<!-- 쿠폰 발급 -->
+<!-- silver 쿠폰 회원가입 할때-->
+<insert id="insertCouponSilver" >
+	insert into coupon(cp_m_id, cp_code, cp_discountvalue,cp_createdAt,cp_endAt)
+	 values(#{m_id}, 'silver', '3000',now(),date_add(cp_createdAt, INTERVAL +1 year)); 
+</insert> 
+
+<!-- gold 쿠폰 주문 시 -->
+<insert id="insertCouponGold" >
+	insert into coupon(cp_m_id, cp_code, cp_discountvalue,cp_createdAt,cp_endAt) 
+	values(#{m_id}, 'gold', '5000',now(),date_add(cp_createdAt, INTERVAL +1 year)); 
+</insert> 
+
+<!-- vip 쿠폰 주문 시 -->
+<insert id="insertCouponVip" >
+	insert into coupon(cp_m_id, cp_code, cp_discountvalue,cp_createdAt,cp_endAt) 
+	values(#{m_id}, 'vip', '10000',now(),date_add(cp_createdAt, INTERVAL +1 year)); 
+</insert> 
+
+<!-- 쿠폰 전체 조회 -->
+<select id="selectCoupon" resultType="coupondto">
+	select cp_seq,cp_m_id,cp_code,cp_discountValue,cp_status,
+	date_format(cp_createdAt,'%Y-%m-%d') as cp_createdAt, date_format(cp_endAt,'%Y-%m-%d') as cp_endAt,period from coupon where cp_m_id = #{m_id};
+</select>
+
+<!-- 쿠폰 유효기간 -->
+<update id="updateDate">
+	update coupon set period = #{period} where cp_m_id = #{m_id}; 
+</update>
+
+
+<!-- 지호 -->
+<!-- 포인트 적립 -->
+<update id="updatePoint" parameterType="pointdto">
+	update member set m_point = m_point + #{m_point}
+	where m_id = #{m_id}
+</update>
+
+<!-- 포인트 조회 -->
+<select id="countPoint" resultType="pointdto">
+	select m_point from member 
+	where m_id = #{m_id}
+</select>
+
+</mapper>
+
+

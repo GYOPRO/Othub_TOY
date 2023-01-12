@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="reserv.ReservDAO">
+ 	<!-- ShowroomDTO map -->
+ 	<resultMap id="ShowroomMap" type="showroomdto">
+	 	<id property="sr_num" column="sr_num"/>
+	 	<result property="sr_viewcount" column="sr_viewcount"/>
+	 	<result property="sr_writer" column="sr_writer"/>
+	 	<result property="sr_title" column="sr_title"/>
+	 	<result property="sr_contents" column="sr_contents"/>
+	 	<result property="sr_writingtime" column="sr_writingtime"/>
+	 	<result property="sr_imgname1" column="sr_image1"/>
+	 	<result property="sr_imgname2" column="sr_image2"/>
+	 	<result property="sr_imgname3" column="sr_image3"/>
+	 	<result property="sr_imgname4" column="sr_image4"/>
+	 	<result property="sr_imgname5" column="sr_image5"/>
+	 	<result property="sr_price" column="sr_price"/>
+	 	<result property="sr_kind" column="sr_kind"/>
+	 	<result property="sr_address1" column="sr_address1"/>
+	 	<result property="sr_operatingtime" column="sr_operatingtime"/>
+	 	<result property="sr_closed" column="sr_closed"/>
+	 	<result property="sr_region" column="sr_region"/>
+	 	<result property="sr_number" column="sr_number"/>
+	 	<result property="sr_address2" column="sr_address2"/>
+	 	<result property="sr_address3" column="sr_address3"/>
+ 	</resultMap>
+ 	
+ 	<!-- ResertDTO map -->
+ 	<resultMap id="reservMap" type="reservdto">
+	 	<id property="r_id" column="r_id"/>
+	 	<result property="sr_num" column="sr_num"/>
+	 	<result property="r_numOfPer" column="r_numOfPer"/>
+	 	<result property="m_id" column="m_id"/>
+	 	<result property="r_orderer" column="r_orderer"/>
+	 	<result property="r_date" column="r_date"/>
+	 	<result property="r_registTime" column="r_registTime"/>
+	 	<collection property="showroomdto" resultMap="ShowroomMap"></collection>
+ 	</resultMap>
+	
+ 
+ 	<!-- 임시 예약 -->
+ 	<insert id="temporarilyReserv" parameterType="reservdto">
+ 		insert into reserv(m_id, sr_num,r_numOfPer, r_date, r_price)
+ 		values (#{m_id}, #{sr_num}, #{r_numOfPer}, #{r_date}, #{r_price} )
+ 	</insert>
+ 	
+ 	<!-- 예약 취소 -->
+ 	<delete id="deleteTemporarily" parameterType="int">
+ 		delete from reserv where r_id=#{r_id}
+ 	</delete>
+ 	
+ 	<!-- 예약 취소2 -->
+ 	<delete id="deleteTemporarily2" parameterType="String">
+ 		delete from reserv where m_id=#{m_id} and r_orderer is null
+ 	</delete>
+ 	
+ 	<!-- 예약 -->
+ 	<update id="reservShowroom" parameterType="reservdto">
+ 		update reserv 
+ 		set
+ 			r_orderer=
+ 			#{r_orderer},
+ 			r_price=
+ 			#{r_price}
+ 		where
+ 			r_id=
+ 			#{r_id}
+ 	</update>
+ 	
+ 	<!-- 예약페이지 조회 -->
+ 	<select id="reservView" resultType="reservdto" parameterType="String">
+ 		select * from reserv where m_id=#{m_id} order by r_id desc limit 0, 1
+ 	</select>
+ 	
+ 	<!-- 예약 조회 -->
+ 	<select id="oneReserv" resultType="reservdto" parameterType="int" >
+ 		select * from reserv where r_id=#{r_id}
+ 	</select>
+ 	
+ 	<!-- 내 예약 조회 -->
+ 	<select id="myReservList" resultMap="reservMap" parameterType="String">
+ 		select *
+ 		from reserv r inner join showroom as sr 
+ 		on r.sr_num=sr.sr_num 
+ 		where m_id=#{m_id} 
+ 		order by r_registTime desc
+ 	</select>
+ 	
+ 	<!-- 예약 전체 조회 /최신순/페이징 -->
+ 	<select id="reservAllList" resultType="reservdto" parameterType="int" >
+ 		select * from reserv order by r_registTime desc limit #{page}, 10
+ 	</select>
+ 	
+ 	<!-- 예약 전체 개수 -->
+ 	<select id="reservTotalCount" resultType="int">
+ 		select count(*) from reserv
+ 	</select>
+ 	
+ 	<!-- 상품별 예약 조회 -->
+ 	<select id="sr_reservList" resultType="reservdto" parameterType="int">
+ 		select * from reserv where sr_num=#{sr_num} order by r_registTime desc
+ 	</select>
+ 	
+ 	<!-- 회원정보 조회 -->
+ 	<select id="sr_memberInfo" resultType="memberdto" parameterType="String">
+ 		select * from member where m_id=#{m_id}
+ 	</select>
+ 	
+ 	<!-- 쇼룸정보 조회 -->
+ 	<select id="sr_showroomInfo" resultType="showroomdto" parameterType="int">
+ 		select 
+			sr_num, 
+	 		sr_writer,
+			sr_title,
+			sr_contents,
+			sr_writingtime,
+			sr_viewcount,
+			sr_image1 as sr_imgname1,
+			sr_image2 as sr_imgname2, 
+			sr_image3 as sr_imgname3,
+			sr_image4 as sr_imgname4,
+			sr_image5 as sr_imgname5,
+			sr_price,
+			sr_kind,
+			sr_operatingtime,
+			sr_closed,
+			sr_region,
+			sr_number,
+	 		sr_address1,
+	 		sr_address2,
+	 		sr_address3
+		from showroom 
+		where sr_num=
+			  #{sr_num}
+ 	</select>
+ 	
+ </mapper>

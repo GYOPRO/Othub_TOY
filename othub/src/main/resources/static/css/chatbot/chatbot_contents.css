@@ -1,0 +1,145 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Della+Respira&family=Kaushan+Script&family=Playball&display=swap');
+@font-face {
+    font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+div.replyModal{ 
+	position:relative; 
+	z-index:1; display:none;
+	float:right;
+	}
+	
+div.modalBackground { 
+	position:fixed; 
+	top:0; left:0; 
+	width:100%; height:100%; 
+	z-index:-1;
+	 }
+	 
+div.modalContent { 
+	display:block;
+	position:fixed; 
+	bottom:20px;
+	right:110px; 
+	width:400px;
+	height:500px; 
+	padding:20px 10px; 
+	background:#fff; 
+	border:3px solid #00B2DD;
+	border-radius: 15px;
+	 }
+	 
+div.modalContent #toptext { 
+	font-size:18px;
+	position: relative;
+	top: -5px;
+	left: 15px;
+	 }
+	 
+	 
+div.modalContent .modal_cancel { 
+	float:right;
+	position:relative;
+	top:-10px;
+	width:15px;
+	height:15px;
+	 }
+	 
+div.chat_main{
+	display:block;
+	width: 400px; 
+	height: 450px;
+	border-radius: 15px;
+	font-size: 14px;
+	border-radius: 15px;
+	overflow: hidden;
+  	overflow-y: auto;
+  	-webkit-overflow-scrolling: touch;
+}
+
+div.chat_main::-webkit-scrollbar {
+    width: 9px;
+  }
+  
+div.chat_main::-webkit-scrollbar-thumb {
+    background-color: #FFE471;
+    border-radius: 15px;
+    height: 30%;
+  }
+  
+div.chat_main::-webkit-scrollbar-track {
+    background-color: #F7F5EB;
+    border-radius: 15px;
+  }
+  
+div.chat_main #chat_main_text{
+	display:block;
+	width: 230px; 
+	margin-left: 9px;
+	margin-top: 10px;
+	border-radius: 15px;
+	background-color: #00B2DD;
+	color: white;
+	padding: 10px;
+}
+
+#question{
+	display:block;
+	position:relative;
+	width: 230px; 
+	right: -143px;
+	margin-top: 10px;
+	text-align: right;
+	border-radius: 15px;
+	background-color: #00D3B3;
+	color: white;
+	padding: 10px;
+}
+
+#answere{
+	display:block;
+	width: 230px; 
+	margin-left: 9px;
+	margin-top: 10px;
+	text-align: left;
+	border-radius: 15px;
+	background-color: #00B2DD;
+	color: white;
+	padding: 10px;
+}
+
+div.chat_input{
+	position:relative;
+	border-radius: 15px;
+	top: 8px;
+	left:12px;
+}
+
+div.chat_input #request{
+	border: 2px solid #00D3B3;
+	padding: 5px;
+	border-radius: 15px;
+	outline:none;
+	width: 330px;
+	background-color:white;
+}
+	 
+div.modalContent .modal_send_icon { 
+	position:relative; 
+	top: -27px;
+	left: 350px;
+	width:25px;
+	height:25px;
+	z-index:-1;
+	 }
+	 
+div.modalContent .modal_send_button { 
+	position:relative; 
+	opacity:0;
+	 }
+	 

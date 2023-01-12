@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+     <mapper namespace="review">
+     
+     
+  <!-- review list -->
+    <select id="reviewlist" resultType="review.ReviewDTO">
+		select * from review
+        order by review_regdate desc
+	</select>
+	
+	<!-- review writing -->
+	<insert id="reviewwrite" parameterType="review.ReviewDTO">
+	 	insert into review (p_id, p_name, order_id, review_writer, review_evaluation, review_contents, review_pic, pic_name)
+	 	values(#{p_id}, #{p_name}, #{order_id}, #{review_writer}, #{review_evaluation}, #{review_contents}, #{review_pic_name}, #{pic_name})
+	</insert>
+	
+	<!-- review view-->
+	<select id="reviewview" resultType="review.ReviewDTO">
+	 	select p_id, p_name, order_id, review_writer, review_evaluation, review_contents, review_pic as review_pic_name,
+	 	pic_name, review_regdate, point_check from review
+	 	where order_id = #{order_id}
+	</select>
+	
+	<!-- review modify -->
+	<update id="reviewmodify" parameterType="review.ReviewDTO" >
+		 update review
+		 set p_id = #{p_id},
+		 p_name = #{p_name},
+		 review_writer = #{review_writer},
+		 review_evaluation = #{review_evaluation},
+		 review_contents = #{review_contents},
+		 review_pic = #{review_pic_name},
+		 pic_name = #{pic_name}
+		 where order_id = #{order_id}
+	</update>
+	
+	<!-- review delete -->
+	<delete id="reviewdelete" parameterType="int">
+		 delete from review
+		 where order_id = #{order_id}
+	</delete>
+	
+	<!-- 게시물 총 갯수 -->
+	<select id="reviewcount" resultType="int">
+	 	select count(order_id) from review
+	</select>
+	
+	<!-- 내 게시물 총 갯수 -->
+	<select id="myreviewcount" resultType="int">
+	 	select count(order_id) from review
+	 	where review_writer = #{m_id}
+	</select>
+	
+	<!-- 상품 확인 -->
+	<select id="pcheck" resultType="int">
+	 	select p_id from product
+	 	where p_id = #{p_id}
+	</select>
+	
+	<!-- 주문내역 -->
+	<select id="getOrderlist" resultType="orderdto">
+		select * from orders where m_id=#{m_id} and order_check=1;
+	</select>
+	
+	<!-- order 호출 -->
+	<select id="getOrder" resultType="order.OrderDTO">
+		select * from orders where m_id=#{m_id} and order_id = #{order_id};
+	</select>
+	
+	<!-- p_name 호출 -->
+	<select id="getname" resultType="String">
+		select p_name from product
+        where p_id = #{p_id};
+	</select>
+	
+	<!-- 게시물 목록 + 페이징 -->
+	<select id="reviewlistPage" parameterType="hashMap" resultType="review.ReviewDTO">
+		 select * from review
+		 order by review_regdate desc
+		 limit #{displayPost}, #{postNum}
+	</select>
+	
+	<!-- 포인트 확인 -->
+	<update id="pointcheck" parameterType="review.ReviewDTO">
+	update review 
+    set point_check = #{point_check} 
+    where order_id = #{order_id}
+	</update>
+	
+	
+	</mapper>

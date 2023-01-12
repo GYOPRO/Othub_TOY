@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="community.CommunityDAO" >
+
+	<!-- 전체 게시물 조회 -->
+	<select id="communityList" resultType="communitydto">
+		select s_seq,s_title,s_contents,s_writer,s_viewcount,s_writingtime,
+		 s_image1 as imagename1, s_image2 as imagename2, s_image2 as imagename2,  s_image3 as imagename3,s_like from styletab
+	</select>
+
+	<!-- 전체 게시물 갯수 조회 -->
+	<select id="countCommunity" resultType="int">
+		select count(*) from styletab
+	</select>
+	
+	<!-- 페이징 최신순-->
+	<select id="limitCommunity" resultType="communitydto" parameterType="int">
+		select s_seq,s_title,s_contents,s_writer,s_viewcount,s_writingtime,
+		 s_image1 as imagename1, s_image2 as imagename2, s_image2 as imagename2 ,s_image3 as imagename3, s_like from styletab
+		  order by s_seq desc limit #{limit}, 16
+	</select>
+	
+	<!-- 페이징 좋아요순-->
+	<select id="likeCommunity" resultType="communitydto" parameterType="int">
+		select s_seq,s_title,s_contents,s_writer,s_viewcount,s_writingtime,
+		s_image1 as imagename1, s_image2 as imagename2, s_image2 as imagename2, s_image3 as imagename3, s_like from styletab 
+		order by s_like desc limit #{limit}, 16
+	</select>
+	
+	<!-- 페이징 내 게시물 조회-->
+	<select id="myCommunity" resultType="communitydto" parameterType="String">
+		select s_seq,s_title,s_contents,s_writer,s_viewcount,s_writingtime,
+		s_image1 as imagename1, s_image2 as imagename2, s_image2 as imagename2, s_like from styletab
+		where s_writer = #{s_writer}
+	</select>
+	
+	<!-- 좋아요한 게시물 번호 조회-->
+	<select id="myLikeCommunity" resultType="communitydto" parameterType="String">
+		select styletab.s_seq,s_title,s_contents,s_writer,s_viewcount,s_writingtime,
+		s_image1 as imagename1, s_image2 as imagename2, s_image2 as imagename2, s_like 
+		from boardlike inner join styletab on boardlike.s_seq = styletab.s_seq where boardlike.m_id = #{m_id};
+	</select>
+	
+	
+	<!-- 게시물 저장 -->
+	<insert id="insertCommunity" parameterType="communitydto" >
+		insert into styletab(s_title, s_contents, s_writer, s_image1, s_image2, s_image3, p_name1,p_name2, p_name3, p_name4)
+		values(#{s_title}, #{s_contents}, #{s_writer}, #{imagename1},#{imagename2},#{imagename3}, #{p_name1}, #{p_name2}, #{p_name3}, #{p_name4})
+	</insert>
+	
+	<!-- 좋아요 수 조회 -->
+	<select id="likeCount" resultType="int">
+		select s_like from styletab where s_seq=#{s_seq}
+	</select>
+	
+	<!-- 게시물 디테일 -->
+	<select id="oneCommunity" resultType="communitydto">
+		select s_seq,s_title,s_contents,s_writer,s_viewcount,s_writingtime,p_name1,p_name2,p_name3,p_name4,
+		 s_image1 as imagename1, s_image2 as imagename2, s_image3 as imagename3, s_like  from styletab where s_seq=#{s_seq}
+	</select>
+	
+	<!-- 글상세보기 태그 가져오기-->
+	<select id="selectProductTag1" resultType="product.ProductDTO" parameterType="String">
+		select p_id,p_name,p_sex,p_brand,p_color,p_price,p_stock,p_contents,p_image1,p_image2,p_image3,p_like,p_thumb from product
+		inner join styletab
+		on  product.p_name = styletab.p_name1
+		where product.p_name = #{p_name1};
+	</select>
+	<select id="selectProductTag2" resultType="product.ProductDTO" parameterType="String">
+		select p_id,p_name,p_sex,p_brand,p_color,p_price,p_stock,p_contents,p_image1,p_image2,p_image3,p_like,p_thumb from product
+		inner join styletab
+		on  product.p_name = styletab.p_name2
+		where product.p_name = #{p_name2};
+	</select>
+	<select id="selectProductTag3" resultType="product.ProductDTO" parameterType="String">
+		select p_id,p_name,p_sex,p_brand,p_color,p_price,p_stock,p_contents,p_image1,p_image2,p_image3,p_like,p_thumb from product
+		inner join styletab
+		on  product.p_name = styletab.p_name3
+		where product.p_name = #{p_name3};
+	</select>
+	<select id="selectProductTag4" resultType="product.ProductDTO" parameterType="String">
+		select p_id,p_name,p_sex,p_brand,p_color,p_price,p_stock,p_contents,p_image1,p_image2,p_image3,p_like,p_thumb from product
+		inner join styletab
+		on  product.p_name = styletab.p_name4
+		where product.p_name = #{p_name4};
+	</select>
+	
+	
+	<!-- 게시물 수정(제목, 내용, 날짜만) -->
+	<update id="updateWriting">
+		update styletab set s_title = #{s_title}, s_contents=#{s_contents} where s_seq=#{s_seq}
+	</update>
+	
+	<!-- 조회수 업데이트 -->
+	<update id="viewCount" parameterType="int">
+		update styletab set s_viewcount=s_viewcount+1 where s_seq=#{s_seq}
+	</update>
+	
+	<!-- 게시물 삭제 -->
+	<delete id="deleteCommunity" >
+		delete from styletab where s_seq=#{s_seq}
+	</delete>
+	
+	<!-- 좋아요 중복방지 select -->
+	<select id="likeCheck" resultType="int">
+		select count(*) from boardlike where s_seq = #{s_seq} and m_id=#{m_id}
+	</select>
+	
+	<!-- max -->
+	<select id="maxLike" resultType="int">
+		SELECT MAX(like_number) + 1 FROM like;
+	</select>
+	
+	<!-- insert 좋아요 -->
+	<insert id="insertLike">
+		insert into boardlike(s_seq, m_id)
+		values( #{s_seq}, #{m_id})
+	</insert>
+	
+	<!-- 게시물 추천수 업데이트 -->
+	<update id="updateLike" parameterType="int">
+	update styletab set 
+	s_like = s_like+1
+	where s_seq = #{s_seq}
+	</update>
+	
+	<!-- 게시물 추천수 취소 -->
+	<update id="updateLikeCancel" parameterType="int">
+	update styletab set 
+	s_like = s_like-1
+	where s_seq = #{s_seq}
+	</update>
+	
+	<!-- 게시글 추천 시 Check를 1로 만들어서 중복방지-->
+	<update id="updateLikeCheck">
+	update boardlike set likeCheck = 1
+	where s_seq = #{s_seq} and m_id = #{m_id}
+	</update>
+	
+	<!-- 게시글 추천취소 시 다시 0  -->
+	<update id="updateLikeCheckCancel">
+	update boardlike set likeCheck = 0
+	where s_seq = #{s_seq} and m_id = #{m_id}
+	</update>
+	
+	<!-- 게시글 추천취소 시 delete -->
+	<delete id="deleteLike">
+	delete from boardlike where s_seq = #{s_seq} and m_id = #{m_id}
+	</delete>
+	
+	<!-- 상세페이지 좋아요 고정 -->
+	<select id="likeCheck_main" resultType="int">
+	select count(*) from boardlike where m_id = #{m_id} and s_seq = #{s_seq}
+	</select>
+	
+	<!-- 비슷한 색상 찾기(상의)-->
+	<select id="similarcolor" resultType="product.ProductDTO" parameterType="String">
+		select * from product
+        inner join category
+        on category.category_id = product.category_id
+        where product.category_id = 1 and p_color = #{p_color}
+        order by p_regdate desc;
+	</select>
+	
+	<!-- 비슷한 색상 찾기(가방)-->
+	<select id="similarcolorbackpack" resultType="product.ProductDTO" parameterType="String">
+		select * from product
+        inner join category
+        on category.category_id = product.category_id
+        where product.category_id = 5 and p_color = #{p_color}
+        order by p_regdate desc;
+	</select>
+	
+	<!-- 비슷한 색상 찾기(하의)-->
+	<select id="similarcolorbottom" resultType="product.ProductDTO" parameterType="String">
+		select * from product
+        inner join category
+        on category.category_id = product.category_id
+        where product.category_id = 2 and p_color = #{p_color}
+        order by p_regdate desc;
+	</select>
+	
+	<!-- 글쓰기 폼 상품 태그(p_id = 1) -->
+	<select id="productTag1" resultType="product.ProductDTO" parameterType="String">
+		select * from product
+		inner join category
+		on category.category_id = product.category_id
+		where product.category_id = 1
+		order by p_name;
+	</select>
+	
+
+	<!-- 제목 검색 기능 -->
+	<select id="searchtitle" resultType="communitydto">
+	select s_seq,s_title,s_contents,s_writer,s_viewcount,s_writingtime,
+		s_image1 as imagename1, s_image2 as imagename2, s_image2 as imagename2, s_like from styletab
+		 where s_title like CONCAT('%', #{s_title}, '%') 
+	</select>
+	
+	<!-- 내용 검색 기능 -->
+	<select id="searchcontents" resultType="communitydto">
+	select s_seq,s_title,s_contents,s_writer,s_viewcount,s_writingtime,
+		s_image1 as imagename1, s_image2 as imagename2, s_image2 as imagename2, s_like from styletab
+		 where s_contents like CONCAT('%', #{s_contents}, '%') 
+	</select>
+	
+	<!-- 작성자 검색 기능 -->
+	<select id="searchwriter" resultType="communitydto">
+	select s_seq,s_title,s_contents,s_writer,s_viewcount,s_writingtime,
+		s_image1 as imagename1, s_image2 as imagename2, s_image2 as imagename2, s_like from styletab
+		 where s_writer like CONCAT('%', #{s_writer}, '%') 
+	</select>
+	
+	<!-- 내가 쓴 댓글 조회 -->
+	<select id="mycomment" resultType="comment.CommentDTO">
+	select s_seq,cm_writer,cm_writingtime,cm_contents,s_title,s_viewcount 
+	from comment c inner join styletab s on c.b_seq = s.s_seq 
+	where cm_writer = #{m_id};
+	</select>
+
+</mapper>
+

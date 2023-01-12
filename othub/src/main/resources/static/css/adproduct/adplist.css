@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+
+tr.adptr{
+	text-align: center;
+	position: relative;
+	display: block;
+	font-size: 16px;
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+}
+
+th.adptr_n{
+	position: relative;
+	width: 100px;
+}
+
+th.adptr_p{
+	position: relative;
+	width: 300px;
+}
+
+th.adptr_b{
+	position: relative;
+	width: 200px;
+}
+
+th.adptr_d{
+	position: relative;
+	width: 100px;
+}
+
+tbody.tbody{
+	text-align: center;
+	display: block;
+	position: relative;
+	text-align: center;
+	font-size: 14px;
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+	
+}
+
+td.con_n{
+	position: relative;
+	width: 100px;
+	padding-bottom: 15px;
+}
+
+td.con_p{
+	position: relative;
+	width: 300px;
+	padding-bottom: 15px;
+}
+
+td.con_b{
+	position: relative;
+	width: 200px;
+	padding-bottom: 15px;
+}
+
+td.con_d{
+	position: relative;
+	width: 100px;
+	padding-bottom: 15px;
+}
+

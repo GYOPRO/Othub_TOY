@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="showroom.ShowroomDAO">
+ 
+ 	<!-- 전체 게시물 조회 -->
+	<select id="showroomList" resultType="showroomdto">
+		select 
+			sr_num, 
+	 		sr_writer,
+			sr_title,
+			sr_contents,
+			sr_writingtime,
+			sr_viewcount,
+			sr_image1 as sr_imgname1,
+			sr_image2 as sr_imgname2, 
+			sr_image3 as sr_imgname3,
+			sr_image4 as sr_imgname4,
+			sr_image5 as sr_imgname5,
+			sr_price,
+			sr_kind,
+			sr_operatingtime,
+			sr_closed,
+			sr_region,
+			sr_number,
+	 		sr_address1,
+	 		sr_address2,
+	 		sr_address3
+		from showroom 
+	</select>
+	
+	<!-- 전체 게시물 최신순 / 페이징-->
+ 	<select id="newList" resultType="showroomdto" parameterType="int">
+ 		select 
+	 		sr_num, 
+	 		sr_writer,
+			sr_title,
+			sr_contents,
+			sr_writingtime,
+			sr_viewcount,
+			sr_image1 as sr_imgname1,
+			sr_image2 as sr_imgname2, 
+			sr_image3 as sr_imgname3,
+			sr_image4 as sr_imgname4,
+			sr_image5 as sr_imgname5,
+			sr_price,
+			sr_kind,
+			sr_operatingtime,
+			sr_closed,
+			sr_region,
+			sr_number,
+	 		sr_address1,
+	 		sr_address2,
+	 		sr_address3 
+ 		from showroom 
+ 		order by sr_writingtime desc limit #{limit}, 12
+ 	</select>
+ 	
+ 	<!-- 전체 게시물 총 개수 -->
+ 	<select id="TotalCountShowroom" resultType="int">
+ 		select count(*) from showroom
+ 	</select>
+ 	
+ 	<!-- 카테고리 / 페이징-->
+ 	<select id="cateList" resultType="showroomdto" parameterType="map">
+ 		select 
+ 			sr_num, 
+	 		sr_writer,
+			sr_title,
+			sr_contents,
+			sr_writingtime,
+			sr_viewcount,
+			sr_image1 as sr_imgname1,
+			sr_image2 as sr_imgname2, 
+			sr_image3 as sr_imgname3,
+			sr_image4 as sr_imgname4,
+			sr_image5 as sr_imgname5,
+			sr_price,
+			sr_kind,
+			sr_operatingtime,
+			sr_closed,
+			sr_region,
+			sr_number,
+	 		sr_address1,
+	 		sr_address2,
+	 		sr_address3
+ 		from showroom
+ 		<if test="sr_kind == ''">
+ 		</if>
+ 		<if test="sr_kind != null">
+			where sr_kind=#{sr_kind} 
+		</if>
+ 		order by sr_writingtime desc limit #{page}, 12
+ 	</select>
+ 	
+ 	<!-- 카테고리 총 개수 -->
+ 	<select id="cateCount" resultType="int" parameterType="int">
+ 		select count(*) from showroom where sr_kind=#{sr_kind}
+ 	</select>
+ 	
+ 	<!-- 오늘의 추천 쇼룸 -->
+ 	<select id="todayShowroom" resultType="showroomdto">
+ 		select 
+ 			sr_num, 
+	 		sr_writer,
+			sr_title,
+			sr_contents,
+			sr_writingtime,
+			sr_viewcount,
+			sr_image1 as sr_imgname1,
+			sr_image2 as sr_imgname2, 
+			sr_image3 as sr_imgname3,
+			sr_image4 as sr_imgname4,
+			sr_image5 as sr_imgname5,
+			sr_price,
+			sr_kind,
+			sr_operatingtime,
+			sr_closed,
+			sr_region,
+			sr_number,
+	 		sr_address1,
+	 		sr_address2,
+	 		sr_address3
+ 		from showroom
+ 		where sr_num=5 or sr_num=6 or sr_num=9
+ 	</select>
+ 	
+ 	<!-- 게시물 조회수 업데이트 -->
+ 	<update id="viewCount" parameterType="int">
+ 		update showroom set sr_viewcount=sr_viewcount+1 where sr_num=#{sr_num}
+ 	</update>
+ 	
+ 	<!-- 게시물 등록 -->
+ 	<insert id="insertShowroom" parameterType="showroomdto">
+ 		insert into showroom
+	 		(sr_writer, 
+	 		sr_title, 
+	 		sr_contents,
+	 		sr_price,
+	 		sr_kind,
+	 		sr_operatingtime,
+	 		sr_closed,
+	 		sr_region,
+	 		sr_number, 
+	 		sr_image1,
+	 		sr_image2, 
+	 		sr_image3, 
+	 		sr_image4, 
+	 		sr_image5,
+	 		sr_address1,
+	 		sr_address2,
+	 		sr_address3)
+ 		values
+	 		(#{sr_writer},
+	 		#{sr_title},
+	 		#{sr_contents},
+	 		#{sr_price},
+	 		#{sr_kind},
+	 		#{sr_operatingtime},
+	 		#{sr_closed},
+	 		#{sr_region},
+	 		#{sr_number},
+	 		#{sr_imgname1},
+	 		#{sr_imgname2},
+	 		#{sr_imgname3},
+	 		#{sr_imgname4},
+	 		#{sr_imgname5},
+	 		#{sr_address1},
+	 		#{sr_address2},
+	 		#{sr_address3})
+ 	</insert>
+ 	
+ 	<!-- 게시물 하나 조회 -->
+ 	<select id="onePost" resultType="showroomdto" parameterType="int">
+ 		select 
+ 			sr_num, 
+	 		sr_writer,
+			sr_title,
+			sr_contents,
+			sr_writingtime,
+			sr_viewcount,
+			sr_image1 as sr_imgname1,
+			sr_image2 as sr_imgname2, 
+			sr_image3 as sr_imgname3,
+			sr_image4 as sr_imgname4,
+			sr_image5 as sr_imgname5,
+			sr_price,
+			sr_kind,
+			sr_operatingtime,
+			sr_closed,
+			sr_region,
+			sr_number,
+	 		sr_address1,
+	 		sr_address2,
+	 		sr_address3
+		from showroom
+		where sr_num=#{sr_num}
+ 	</select>
+ 	
+ 	<!-- 게시물 수정 -->
+ 	<update id="updateShowroom" parameterType="showroomdto">
+ 		update showroom 
+ 		set 
+	 		sr_title= 
+	 		#{sr_title}, 
+	 		sr_contents= 
+	 		#{sr_contents}, 
+	 		sr_price= 
+	 		#{sr_price},
+	 		sr_kind= 
+	 		#{sr_kind},
+	 		sr_operatingtime= 
+	 		#{sr_operatingtime},
+	 		sr_closed= 
+	 		#{sr_closed},
+	 		sr_region= 
+	 		#{sr_region},
+	 		sr_number= 
+	 		#{sr_number},
+	 		sr_image1=
+	 		#{sr_imgname1},
+	 		sr_image2=
+	 		#{sr_imgname2},
+	 		sr_image3=
+	 		#{sr_imgname3},
+	 		sr_image4=
+	 		#{sr_imgname4},
+	 		sr_image5=
+	 		#{sr_imgname5},
+	 		sr_address1=
+	 		#{sr_address1},
+	 		sr_address2=
+	 		#{sr_address2},
+	 		sr_address3=
+	 		#{sr_address3}
+ 		where 
+ 			sr_num=
+ 			#{sr_num}
+ 	</update>
+ 	
+ 	<!-- 게시물 삭제 -->
+ 	<delete id="deleteShowroom" parameterType="int">
+ 		delete from showroom where sr_num=#{sr_num}
+ 	</delete>
+ 	
+ 	
+ </mapper>

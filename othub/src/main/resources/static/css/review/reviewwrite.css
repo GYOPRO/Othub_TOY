@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+form.writing_box{
+	display: block;
+	text-align: center;
+	width: 1200px;
+	position: relative;
+	left: 350px;
+}
+
+div.top_info{
+	display: block;
+	text-align: center;
+	position: relative;
+	left: 197px;
+}
+
+div.writer{
+	border: 1px solid #00336a;
+	width: 100px;
+	position: relative;
+	padding: 7px;
+	top: 29px;
+	left: -100px;
+	color: gray;
+}
+
+div.regdate{
+	position: relative;
+	left:-540px;
+	top: -1px;
+}
+
+div#current_date{
+	border: 1px solid #00336a;
+	width: 120px;
+	padding: 7px;
+	padding-top: 10px;
+	padding-left: 23px;
+	position: relative;
+	top:-29px;
+	left: 30px;
+	color: gray;
+}
+
+div.review_ev{
+	border: 1px solid #00336a;
+	width: 519px;
+	padding: 6px;
+	padding-bottom: 6px;
+	color: gray;
+	position: relative;
+	top:-66px;
+	left: 196px;
+}
+
+button.review_submit{
+	border: 1px solid #00336a;
+	width: 160px;
+	padding-top:11px;
+	padding: 8px;
+	background-color: #68afff;
+	color: white;
+	position: relative;
+	top:-103px;
+	left: 225px;
+	font-size: 15px;
+	font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    vertical-align: middle;
+}
+
+input[type=radio]{
+	appearance:none; 
+	width: 14px;
+	height: 14px;
+	border: 1px solid #d6d6d6;  
+	border-radius: 50%;    
+}
+
+input[type=radio]:checked{      
+width: 14px;
+height: 14px;
+border-radius: 50%;
+background-color: #68afff;
+border: 2px solid #fff; 
+outline: 1px solid #68afff;
+}
+
+textarea.review_contents{
+	border: 1px solid black;
+	width : 1000px;
+	height: 400px;
+	position: relative;
+	top: -150px;
+	font-size: 14px;
+	font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+   	line-height: 40px;
+}
+
+.inputpic label{
+	width: 135px;
+	height: 35px;
+	padding-bottom:2px;
+	display: inline-block;
+	color: #fff;
+	line-height: 45px;
+	vertical-align: middle;
+	background-color: #68afff;
+	cursor: pointer;
+	border: 1px solid #00336a;
+	text-align: center;
+	position: relative;
+	top: -145px;
+	left: -435px;
+}
+
+.inputpic input[type="file"]{
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+img#select_img{
+	position: relative;
+	top: -184px;
+	left: -195px;
+}
+

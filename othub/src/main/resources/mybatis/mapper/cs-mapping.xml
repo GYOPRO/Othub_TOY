@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="cs">
+   
+    <!-- cslist -->
+    <select id="cslist" resultType="cs.CSDTO">
+		select * from cs
+        order by cs_seq desc
+	</select>
+	
+	<!-- cswriting -->
+	<insert id="cswrite" parameterType="cs.CSDTO">
+	 	insert into cs (cs_writer, cs_title, cs_question, cs_open, cs_pic, pic_name)
+	 	values(#{cs_writer}, #{cs_title}, #{cs_question}, #{cs_open}, #{cs_pic_name}, #{pic_name})
+	</insert>
+	
+	<!-- csview-->
+	<select id="csview" resultType="cs.CSDTO">
+	 	select cs_seq, cs_writer, cs_open, cs_title, cs_question,
+	 	cs_pic as cs_pic_name, pic_name, cs_regdate, answere_check from cs
+	 	where cs_seq = #{cs_seq}
+	</select>
+	
+	<!-- csmodify -->
+	<update id="csmodify" parameterType="cs.CSDTO" >
+		 update cs
+		 set cs_title = #{cs_title}, cs_writer = #{cs_writer},
+		 cs_question = #{cs_question},
+		 cs_open = #{cs_open},
+		 cs_pic = #{cs_pic_name},
+		 pic_name = #{pic_name}
+		 where cs_seq = #{cs_seq}
+	</update>
+	
+	<!-- csdelete -->
+	<delete id="csdelete" parameterType="int">
+		 delete from cs
+		 where cs_seq = #{cs_seq}
+	</delete>
+	
+	<!-- 게시물 총 갯수 -->
+	<select id="cscount" resultType="int">
+	 	select count(cs_seq) from cs
+	</select>
+	
+	<!-- my 게시물 총 갯수 -->
+	<select id="mycscount" resultType="int">
+	 	select count(cs_seq) from cs
+	 	where cs_writer = #{m_id}
+	</select>
+	
+	<!-- 게시물 목록 + 페이징 -->
+	<select id="cslistPage" parameterType="hashMap" resultType="cs.CSDTO">
+		 select * from cs
+		 order by cs_seq desc
+		 limit #{displayPost}, #{postNum}
+	</select>
+	
+	<!-- 비밀글 확인 -->
+	<select id="csrole" resultType="member.MemberDTO">
+	 	select role1 from member
+	</select>
+	
+		<!-- 답변 확인 -->
+	<update id="answerecheck" parameterType="cs.CSDTO">
+	    update cs
+	    set answere_check = #{answere_check}
+	        where cs_seq = #{cs_seq}
+	</update>
+
+	    
+	
+   </mapper>

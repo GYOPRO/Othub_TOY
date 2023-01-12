@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+
+img {
+	width: 20%;
+	height: 20%;
+}
+
+.four{
+	color : red;
+}
+
+#head{
+	text-align: center;
+	font-size: 30px;
+}

@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+div.profile{
+	display: block;
+	position: relative;
+	float: left;
+	margin-left: 70px;
+	width: 500px;
+}
+
+p.pro_con{
+	width: 400px;
+	line-height: 25px;
+	position: relative;
+	left: 30px;
+}
+
+
+tr.cstr{
+	text-align: center;
+	position: relative;
+	display: block;
+	left: 600px;
+	margin-bottom:20px;
+	font-size: 16px;
+	top: -400px;
+	width: 1000px;
+}
+
+th.cstr_n{
+	position: relative;
+	width: 100px;
+}
+
+th.cstr_t{
+	position: relative;
+	width: 600px;
+}
+
+th.cstr_w{
+	position: relative;
+	width: 100px;
+}
+
+th.cstr_d{
+	position: relative;
+	width: 200px;
+}
+
+tbody.tbody{
+	display: block;
+	position: relative;
+	text-align: center;
+	margin-bottom: 50px;
+	left: 600px;
+	font-size: 14px;
+	top: -400px;
+	width: 1000px;
+}
+
+td.con_n{
+	position: relative;
+	width: 100px;
+	padding-bottom: 15px;
+}
+
+td.con_t{
+	position: relative;
+	width: 600px;
+	padding-bottom: 15px;
+}
+
+td.con_w{
+	position: relative;
+	width: 100px;
+	padding-bottom: 15px;
+}
+
+td.con_d{
+	position: relative;
+	width: 200px;
+	padding-bottom: 15px;
+}
+
+div.listnumber{
+	position: relative;
+	text-align: center;
+	left: 800px;
+	top: -400px;
+	letter-spacing: 15px;
+	width: 600px;
+}

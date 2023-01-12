@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+div.listnav{
+	display: block;
+	position:relative;
+	font-size: 13px;
+	text-align: center;
+	margin-left: 500px;
+	margin-bottom: 60px;
+}
+
+/* a.listbutton:hover {
+ 	-webkit-transform: scale(1.1);
+  	transform: scale(1.1);
+  	color:black;
+  	font-weight: 500;
+}
+a#cswrite:hover {
+ 	-webkit-transform: scale(1.1);
+  	transform: scale(1.1);
+  	color:black;
+  	font-weight: 500;
+} */
+
+a#list_button{
+	padding:5px;
+	background-color: #68afff;
+	color: #fff;
+	width: 90px;
+	display:block;
+	position:relative;
+	text-align: center;
+	left: -70px;
+	top: 30px;
+	border: 1px solid #00336a;
+	margin: auto;
+}
+
+a#insert_button{
+	padding:5px;
+	background-color: #68afff;
+	color: #fff;
+	width: 90px;
+	display:block;
+	position:relative;
+	text-align: center;
+	left: 70px;
+	top: 1px;
+	border: 1px solid #00336a;
+	margin: auto;
+}

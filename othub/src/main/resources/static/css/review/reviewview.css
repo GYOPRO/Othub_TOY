@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+.one{
+	border: 0;
+    height: 1px;
+    background: #ccc;
+}
+
+form.review_form{
+	display:block;
+	width: 1200px;
+	text-align: center;
+	position: relative;
+	left: 350px;
+}
+
+div.review_t{
+	margin: 20px;
+	font-size: 15px;
+	text-align: center;
+}
+
+div.review_w{
+	font-size: 12px;
+	color: gray;
+	float:right;
+	position: relative;
+	right: 10px;
+	line-height: 25px;
+}
+
+div.review_c{
+	font-size: 15px;
+	margin: 50px;
+	text-align: center;
+	display: block;
+	width: 600px;
+	position: relative;
+	left: 250px;
+	line-height: 25px;
+}
+
+img{
+	margin-bottom: 20px;
+}
+
+div.writerbutton{
+	float:right;
+	position: relative;
+	right: 10px;
+	bottom: -10px;
+	margin-bottom: 50px;
+}
+
+b.review_c_t{
+	position: relative;
+	float:left;
+}
+
+.review_contents{
+	
+	margin-top: 5px;
+}
+
+button.add_answere{
+	color: #FFF;
+	background-color: #68afff;
+	padding: 3px;
+	margin-left: 10px;
+	width: 100px;
+	height: 82px;
+	position: relative;
+	top:-37px;
+	font-size: 15px;
+	border: 1px solid #00336a;
+	font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#precheck{
+	left: -10px;
+	width: 140px;
+	height: 35px;
+	border: 1px solid #00336a;
+	background-color: #68afff;
+	color: #fff;
+	position:relative;
+	text-align: center;
+	font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#check{
+	left: 10px;
+	width: 140px;
+	height: 35px;
+	border: 1px solid #00336a;
+	background-color: #68afff;
+	color: #fff;
+	position:relative;
+	text-align: center;
+	font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+

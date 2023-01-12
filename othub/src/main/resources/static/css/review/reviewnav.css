@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+div.listnav{
+	display: block;
+	width: 300px;
+	position:relative;
+	font-size: 13px;
+	text-align: center;
+	left: 1295px;
+	top: 20px;
+	margin-bottom:20px;
+}
+
+/* a.listbutton:hover {
+ 	-webkit-transform: scale(1.1);
+  	transform: scale(1.1);
+  	color:black;
+  	font-weight: 500;
+}
+a#cswrite:hover {
+ 	-webkit-transform: scale(1.1);
+  	transform: scale(1.1);
+  	color:black;
+  	font-weight: 500;
+} */
+
+a#list_button{
+	padding:5px;
+	background-color: #68afff;
+	color: #fff;
+	width: 90px;
+	display:block;
+	position:relative;
+	text-align: center;
+	left: 20px;
+	border: 1px solid #00336a;
+}
+
+a#mylist_button{
+	padding:5px;
+	background-color: #68afff;
+	color: #fff;
+	width: 90px;
+	position:relative;
+	display:block;
+	top: -28px;
+	left: 150px;
+	text-align: center;
+	border: 1px solid #00336a;
+}

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order.OrderDAO" >
+	
+<!-- 주문입력 호출 -->
+<insert id="insertOrder" parameterType="orderdto">
+	insert into orders (m_id, p_id, amount, orderdate)
+	<!-- values("kdh", #{p_id}, #{amount}, now())  -->
+	values(#{m_id}, #{p_id}, #{amount}, now()) 	
+</insert>
+
+<!-- 이용자 정보 호출 -->
+<select id="getMember" parameterType="string" resultType="orderdto">
+	select * from member where m_id=#{m_id}
+</select>
+
+<!-- product 호출 -->
+<select id="getProductdetail" parameterType="int" resultType="orderdto">
+	select * from product where p_id=#{p_id}
+</select>
+
+<!-- orderid 호출 -->
+<select id="getOrderid" resultType="int">
+	select order_id from orders order by orderdate desc limit 1 ;
+</select>
+
+<!-- orderid 호출2 -->
+<select id="getOrderid2" parameterType="String" resultType="orderdto">
+	select order_id from orders where m_id=#{m_id} and order_check is null;
+</select>
+
+
+<!-- p_id 호출 -->
+<select id="getProductid" parameterType="int" resultType="int">
+	select p_id from orders where order_id=#{order_id}
+</select>
+
+<!-- orders table 호출 -->
+<select id="getOrders" parameterType="int" resultType="orderdto">
+	select * from orders where order_id=#{o_id}
+</select>
+
+<!-- 주문완료 -->
+<insert id="doOrder" parameterType="int">
+<!-- update orders set order_check = 1 where order_id=${order_id};
+	update orders set orderdate = now() where order_id=${order_id};
+	-->
+	update orders set 
+  	order_check = 1,
+  	orderdate = now() 
+  	where order_id=#{order_id};
+</insert>
+
+
+<!-- 주문완료 cart-->
+<delete id="orderComplete" parameterType="int">
+	delete from cart where p_id=${p_id}
+</delete>
+
+<!--  주문완료시 재고 빼기 -->
+<insert id="orderStock" parameterType="orderdto">
+	update product set
+	p_stock = #{p_stock}
+	where p_id=#{p_id};
+</insert>
+
+<!-- 주문취소 -->
+<delete id="cancleOrder" parameterType="int">
+	delete from orders where order_id=${order_id}
+</delete>
+
+<!-- 주문내역 -->
+<select id="getOrdered" parameterType="String" resultType="orderdto">
+	select * from orders where m_id=#{m_id} and order_check=1;
+</select>
+
+<!-- 장바구니에서 주문하기 -->
+<select id="cartToOrder" parameterType="int" resultType="orderdto">
+	select * from cart where cart_id=#{cart_id}
+</select>
+
+<!-- 선교 수정 -->
+<!-- 등급 변경(gold) -->
+<update id = "updateRoleGold" parameterType="String">
+	update member set role2 = "gold" where m_id=#{m_id}
+</update>
+
+<!-- 등급 변경(vip) -->
+<update id = "updateRoleVip" parameterType="String">
+	update member set role2 = "vip" where m_id=#{m_id}
+</update>
+
+<!-- 지호 -->
+<!-- order_id 호출 -->
+<select id="getOrderid3" parameterType="int" resultType="int">
+	select order_id from orders 
+	where order_id = #{order_id}
+</select>
+
+<!-- 리뷰 확인 -->
+<update id="reviewcheck" parameterType="orderdto">	
+	update orders 
+	set review_check = #{review_check} 
+	where order_id = #{order_id}
+</update>
+
+
+
+</mapper>
+

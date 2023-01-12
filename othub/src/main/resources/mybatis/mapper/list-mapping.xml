@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+ <mapper namespace="product">
+ <!-- category -->
+	<select id = "list"
+    resultType="product.ProductDTO"> 
+        select * from product
+        inner join category
+        on category.category_id = product.category_id
+        where product.category_id = #{category_id}
+        order by p_regdate desc
+    </select>
+    
+    <!-- 최신순 -->
+    <select id="recent" resultType="product.ProductDTO">
+		select * from product
+        inner join category
+        on category.category_id = product.category_id
+        where product.category_id = #{category_id}
+        order by p_regdate desc
+	</select>
+	
+	<!-- 좋아요 -->
+	 <select id="like" resultType="product.ProductDTO">
+		select * from product
+        inner join category
+        on category.category_id = product.category_id
+        where product.category_id = #{category_id}
+        order by p_like desc
+	</select>
+	
+	<!-- 추천순 -->
+	 <select id="recom" resultType="product.ProductDTO">
+		select * from product
+        inner join category
+        on category.category_id = product.category_id
+        where product.category_id = #{category_id}
+        order by p_stock*3 + p_like*2 + p_viewcount desc
+	</select>
+
+    
+    </mapper>
+
+  
+     

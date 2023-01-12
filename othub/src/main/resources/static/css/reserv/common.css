@@ -1,0 +1,190 @@
+@charset "UTF-8";
+
+main {
+	padding : 5em 20vh;
+}
+
+/*예약 페이지*/
+.r_main_sec1, .r_main_sec2 {
+	display:inline-block ;
+	border:1px solid rgb(210, 210, 210);
+	padding: 3em;
+	vertical-align: top; 
+}
+.r_main_sec1 {
+	width:58%;
+}
+.r_main_sec2 {
+	width:25%;
+}
+.r_main_h3 {
+	margin:0;
+	margin-bottom: 1em;
+	font-size: 1.5em;
+	color:  rgb(40, 40, 40);
+}
+.r_main_info{
+	display:inline-block ;
+	vertical-align: top; 
+}
+.info_img {
+	width: 40%;
+	aspect-ratio: auto 1 / 1;
+	overflow: hidden;
+	text-align: center;
+}
+.info_img img {
+	height: 100%;
+}
+.info_sub{
+	padding: 0.2em 2em;
+	width:50%;
+	overflow: hidden;
+}
+.info_top{
+	margin-bottom: 2.5em;;
+}
+.info_title {
+	font-size:2.1em;
+	font-weight: 600;
+	color:  rgb(40, 40, 40);
+}
+.info_p{
+	vertical-align: middle; 
+	margin-top: 0.3em;
+}
+.info_p span:nth-child(1){
+	display:inline-block;
+	width:6.5em;
+	font-size:1.3em;
+	color:  rgb(50, 50, 50);
+}
+.info_p span:nth-child(2){
+	font-size:1.1em;
+	color:  rgb(50, 50, 50);
+}
+.info2 span:nth-child(1), .orderer_label{
+	margin-top: 0.3em;
+	display:inline-block;
+	width:6em;
+	font-size:1.2em;
+	color:  rgb(50, 50, 50);
+}
+.info2 span:nth-child(2){
+	font-size:1.1em;
+}
+.reserv_form {
+	margin-top:1em;
+}
+.reserv_form input[type=text]{
+	width:100%;
+	height:3em;
+	border:1px solid rgb(210, 210, 210);
+	border-radius: 0.5em;
+	padding: 0 0.5em;
+}
+.reserv_form button{
+	margin-top: 5.7em;
+	border:0;
+	border-radius: 0.5em;
+	width:100%;
+	height: 3em;
+	font-size: 1.05em;
+	font-weight:600;
+	background-color: #87A2FB;
+	color:#ffffff;
+}
+
+
+/*myreserv*/
+.myReserv {
+	padding : 6em 20vh 15em;
+}
+.myreservBox{
+	display: inline-block;
+	margin-left:3.5em;
+	width: 80%;
+}
+.reserv_head, .reserv_body ,.reserv_head > span,.reserv_body > span{
+	display: inline-block;
+	vertical-align: middle;
+}
+.reserv_head >span,.reserv_body > span {
+	text-align: center;
+}
+.reservTitle{
+	font-size: 2.5em;
+	margin:0 0 1em 0;
+	text-align: left;
+}
+.reserv_card {
+	margin:0 0 1em;
+	width:100%;
+}
+.reserv_head {
+	padding: 1em 0;
+	width:100%;
+	background-color: rgb(240,240,240);
+}
+.reserv_body {
+	padding: 1em 0;
+	width:99.8%;
+	border:1px solid rgb(230,230,230);
+}
+.reserv_body img {
+	margin-left:1em;
+	width:30%;
+}
+.rtime{
+	float: right;
+}
+.reserv_head > span:nth-child(1),
+.reserv_body > span:nth-child(1){
+	width: 60%;
+}
+.reserv_head > span:nth-child(2),
+.reserv_body > span:nth-child(2){
+	width: 10%;
+}
+.reserv_head > span:nth-child(3),
+.reserv_body > span:nth-child(3){
+	width: 10%;
+}
+.reserv_head > span:nth-child(4),
+.reserv_body > span:nth-child(4){
+	width: 16%;
+}
+.reserv_body > span:nth-child(1){
+	text-align: left;	
+}
+.reserv_body > span:nth-child(1) > div{
+	display:inline-block;
+	vertical-align: top;
+	margin-left:1em;
+}
+.reserv_body > span:nth-child(1) > div > span:nth-child(1){
+	display:inline-block;
+	margin-bottom:0.5em;
+	font-size: 1.3em;
+	font-weight: 700;
+	color: #333;
+}
+.rinfo {
+	width:20px;
+}
+.rdate {
+	font-weight: 700;
+	color: #87A2FB;;
+}
+
+
+
+/*반응형*/
+@media screen and (min-width: 1441px){
+	main {
+		padding : 10em 35vh;
+	}
+	.reserv_form button{
+		margin-top: 8em;
+	}
+}

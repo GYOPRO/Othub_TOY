@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+
+#images{
+	float:left;
+	margin-left: 400px;
+	width : 500px;
+	height : 650px;
+}
+img.small{
+	width : 150px;
+	height : 150px;
+	margin-left : 0px;
+	padding : 0px;
+}
+
+img#big{
+	width : 457px;
+	height : 457px;
+}
+
+div#information{
+	text-align: center;
+	margin-top: -610px;
+	margin-left:950px;
+	margin-bottom: 500px;
+	width: 400px;
+}
+
+div#category{
+	margin-bottom: 10px;
+}
+
+div#p_name{
+	font-size: 20px;
+	line-height: 35px;
+}
+
+div#p_brand{
+	font-size: 13px;
+	margin-top: 10px;
+}
+
+hr{
+	margin-top: 20px;
+	margin-bottom: 23px;
+	background:gray;
+    height:1px;
+    border:0;
+}
+
+div#p_price{
+	font-size: 20px;
+	margin-right: -300px;
+}
+
+div#p_stock{
+	margin-top: 10px;
+	margin-right: -350px;
+}
+
+div#p_sex{
+	margin-top: 10px;
+	margin-right: -370px;
+}
+
+
+p#datainsert{
+	font-size: 16px;
+	text-align: center;
+	width: 100px;
+	background-color: #68afff;
+	border: 0px solid #00336a;
+	color: #fff;
+	border-radius: 30px;
+	padding-top: 5px;
+	margin-left: 150px;
+	margin-bottom: 20px;
+	margin-top: 30px;
+}
+
+a#adpamodify,#adpdelete{
+	font-size: 15px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+img#contents{
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+

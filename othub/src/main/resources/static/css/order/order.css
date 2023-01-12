@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+#q{
+	display : flex;
+	justify-content : center;
+}
+
+#q1{
+	margin-right : 50px;
+	
+}
+
+#q2{
+	margin-left : 50px;
+	
+}

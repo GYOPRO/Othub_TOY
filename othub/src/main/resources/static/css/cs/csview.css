@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+.one{
+	border: 0;
+    height: 1px;
+    background: #ccc;
+}
+
+form.cs_form{
+	display:block;
+	width: 1200px;
+	text-align: center;
+	position: relative;
+	left: 350px;
+}
+
+div.cs_t{
+	margin: 20px;
+	font-size: 15px;
+	text-align: center;
+}
+
+div.cs_w{
+	font-size: 12px;
+	color: gray;
+	float:right;
+	position: relative;
+	right: 10px;
+	line-height: 25px;
+}
+
+div.cs_c{
+	font-size: 15px;
+	margin: 50px;
+	text-align: center;
+	display: block;
+	width: 600px;
+	position: relative;
+	left: 250px;
+	line-height: 25px;
+}
+
+img{
+	margin-bottom: 20px;
+}
+
+div.writerbutton{
+	float:right;
+	position: relative;
+	right: 10px;
+	bottom: -10px;
+}
+
+div.cs_answere_box{
+	display: block;
+	
+}
+
+b.answere_t{
+	margin-top:30px;
+	position: relative;
+	left: 350px;
+}
+
+p.answere_c{
+	font-size: 14px;
+	text-align: center;
+	display: block;
+	width: 600px;
+	position: relative;
+	left: 650px;
+	line-height: 25px;
+	margin-bottom: 60px;
+}
+
+b.cs_c_t{
+	position: relative;
+	float:left;
+}
+
+div.cs_answere_textbox{
+	display: block;
+	width: 800px;
+	text-align: center;
+	left: 550px;
+	position: relative;
+	margin-bottom: 50px;
+}
+
+b.add_answere_text{
+	left: -285px;
+	margin-bottom: 100px;
+	position: relative;
+}
+
+.answere_contents{
+	border: 1px solid gray;
+	margin-top: 5px;
+}
+
+button.add_answere{
+	color: #FFF;
+	background-color: #68afff;
+	padding: 3px;
+	margin-left: 10px;
+	width: 100px;
+	height: 82px;
+	position: relative;
+	top:-37px;
+	font-size: 15px;
+	border: 1px solid #00336a;
+	font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+

@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+/*adminpage nav*/
+.adminBox {
+	padding : 6em 20vh 15em;
+}
+.adminBox, .adminNavBox, .admin_list_box {
+	display: inline-block;
+}
+.h2{
+	margin:0 0 1.5em 0;
+}
+ul{
+	padding:0;
+}
+
+
+/*은영 파트너 입정신청 조회*/
+.ptlist_main{
+	padding : 6em 20vh 15em;
+}
+.ptlist_sec1{
+	vertical-align: top;
+	display: inline-block;
+	margin-left:3.5em;
+	width:81%;
+}
+.h3{
+	display:inline-block;
+	margin:0 0 1.5em;
+	font-size: 2em;
+}
+.ptlist_btn{
+	float: right;
+	padding:0.7em 1em;
+	vertical-align: middle;
+	border: 0;
+}
+.ptlist_box{
+	width:100%;
+}
+.ptlist_body2{
+	border-bottom: 1px solid #ececec;
+}
+.ptlist_head, .ptlist_body, .ptlist_body2{
+	padding: 1.5em 2% 1em;
+	width:96%;
+}
+.ptlist_head{
+	background-color: rgb(240,240,240);
+}
+.ptlist_body{
+ 	border-bottom: 1px solid #ececec;
+}
+.ptlist_head span, .ptlist_body span{
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+}
+.ptlist_body2 span{
+	display: inline-block;
+	vertical-align: middle;
+}
+.ptlist_head span{
+	color:#666;
+}
+.ptlist_head span:nth-child(1),.ptlist_body span:nth-child(1){
+	width: 4%;
+}
+.ptlist_head span:nth-child(2),.ptlist_body span:nth-child(2){
+	width: 17%;
+}
+.ptlist_head span:nth-child(3),.ptlist_body span:nth-child(3){
+	width: 7%;
+}
+.ptlist_head span:nth-child(4),.ptlist_body span:nth-child(4){
+	width: 22%;
+}
+.ptlist_head span:nth-child(5),.ptlist_body span:nth-child(5){
+	width: 10%;
+}
+.ptlist_head span:nth-child(6),.ptlist_body span:nth-child(6){
+	width: 5%;
+}
+.ptlist_head span:nth-child(7),.ptlist_body span:nth-child(7){
+	width: 18%;
+}
+.ptlist_head span:nth-child(8),.ptlist_body span:nth-child(8){
+	width: 13%;
+}
+.ptlist_body2 > span:nth-child(1){
+	width: 50%;
+}
+.ptlist_body2 > span:nth-child(2){
+	width: 48%;
+}
+.ptlist_imgbox img {
+	width: 100%;
+}

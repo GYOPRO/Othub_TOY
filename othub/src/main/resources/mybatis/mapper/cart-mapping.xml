@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart.CartDAO" >
+	
+<!-- 장바구니 입력 -->
+<insert id="insertCart" parameterType="cartdto">
+<!-- 	insert into cart (amount, m_id, p_id) -->
+<!-- 	values(#{amount}, #{m_id}, #{p_id}) -->
+	insert into cart (amount, m_id, p_id) select #{amount}, #{m_id}, #{p_id} where not exists(select p_id from cart where p_id = #{p_id});
+</insert>
+
+<!-- 중복체크용 장바구니 조회 -->
+<select id="getCart2" parameterType="String" resultType="cartdto">
+	select * from cart
+	where m_id=#{m_id}
+</select>
+
+<!-- 중복시 장바구니 업데이트 -->
+<insert id="updateCart" parameterType="int">
+	 update cart set amount = #{sum} where p_id=${p_id};
+</insert>
+
+<!-- 장바구니 조회 -->
+<select id="getCart" parameterType="String" resultType="cartdto">
+	select * from cart
+	where m_id=#{m_id}
+</select>
+
+<!-- product id조회 -->
+<select id="getProductid" parameterType="int" resultType="int">
+	select p_id from cart where cart_id=#{cart_id}
+</select>
+
+<!-- product 호출 -->
+<select id="getProductdetail" resultType="cartdto" parameterType="int">
+	select * from product where p_id=#{p_id}
+</select>
+
+<!-- 장바구니 수량 수정 -->
+<select id="updateCartAmount" parameterType="int">
+	update cart set amount=#{amount} where cart_id=#{cart_id}
+</select>
+
+<!-- 장바구니 품목 삭제 -->
+<delete id="deleteOne" parameterType="int">
+	delete from cart where cart_id=#{cart_id}
+</delete>
+</mapper>
+

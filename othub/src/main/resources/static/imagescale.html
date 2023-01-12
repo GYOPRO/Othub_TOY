@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form>
+    <input type="file" id="file_uploads" accept=".jpg" >
+    <input type="button" id="resize" value="크기조정">
+</form>
+<canvas id="canvas" width=500 height=500 ></canvas>
+<script>
+let canvas;
+document.querySelector('#resize').onclick = function(){
+		const file = document.querySelector('#file_uploads').files[0];
+		//file type을 가진 input DOM에 files로 파일 데이터를 가져올 수 있습니다.
+		console.log(file);
+		
+		const fr = new FileReader();
+		//fr.readAsDataURL(file);
+		
+		fr.onload = (base64) => {
+		const image = new Image();
+		image.src = base64.target.result;
+		
+			image.onload = (e) => { 
+			 canvas = document.querySelector('canvas');
+			 const ctx = canvas.getContext('2d');
+			
+			 canvas.width = e.target.width;
+			 canvas.height = e.target.height;
+			 
+			 ctx.drawImage(e.target, 0, 0);
+			
+			 // 용량이 줄어든 base64 이미지 url
+			 console.log(canvas.toDataURL('image/jpeg', 0.5));
+			 const dataUrl = canvas.toDataURL("image/jpeg", 0.5);
+			 //url을 blob으로 변경
+			 const blob = dataURLToBlob(dataUrl);
+			//blob을 파일로 저장하기 위한 가상의 a 태그 생성 - 붙여넣기
+			const link = document.createElement( 'a' );
+			link.style.display = 'none';
+			document.body.appendChild( link );
+			//blob을 파일로 저장 
+		    link.href = dataUrl; //URL.createObjectURL( blob ); 
+		    link.download = file.name.split(".")[0] +'small.jpg';
+		    link.click();
+		    
+			const img = document.createElement( 'img' );
+			img.src = '/mydownload/'+file.name.split(".")[0] +'small.jpg';
+			document.body.appendChild( img );
+			
+			}
+		}
+		
+		fr.readAsDataURL(file);//file 을 읽어서  url로 변경
+		//console.log(file.size);
+}
+// 줄인 이미지 blob으로 생성
+function dataURLToBlob(dataURL){
+	const BASE64_MARKER = ";base64,";
+
+	  // base64로 인코딩 되어있지 않을 경우
+	  if (dataURL.indexOf(BASE64_MARKER) === -1) {
+	    const parts = dataURL.split(",");
+	    const contentType = parts[0].split(":")[1];
+	    const raw = parts[1];
+	    return new Blob([raw], {
+	      type: contentType
+	    });
+	  }
+	  // base64로 인코딩 된 이진데이터일 경우
+	  const parts = dataURL.split(BASE64_MARKER);
+	  const contentType = parts[0].split(":")[1];
+	  const raw = window.atob(parts[1]);
+	  // atob()는 Base64를 디코딩하는 메서드
+	  const rawLength = raw.length;
+	  // 부호 없는 1byte 정수 배열을 생성 
+	  const uInt8Array = new Uint8Array(rawLength); // 길이만 지정된 배열
+	  let i = 0;
+	  while (i < rawLength) {
+	    uInt8Array[i] = raw.charCodeAt(i);
+	    i++;
+	  }
+	  console.log(contentType);
+	  return new Blob([uInt8Array], {type: contentType});
+}
+
+
+/*package com.example.naverai;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration //설정 xml 파일 대신
+public class MyWebConfig implements WebMvcConfigurer {
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/upload/**").addResourceLocations
+		("file:///c:/upload/");
+		registry.addResourceHandler("/naverai/**").addResourceLocations
+		("file:///" + NaverInform.path);
+		//http://localhost:8082/naverai/xxxx
+		registry.addResourceHandler("/mydownload/**").addResourceLocations
+		("file:///C:/Users/student/Downloads/");
+	}
+	
+
+}
+*/	
+</script>
+</body>
+</html>

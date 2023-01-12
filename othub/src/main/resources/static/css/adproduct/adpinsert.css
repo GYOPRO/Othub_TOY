@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+form.insert_box{
+	display: block;
+	text-align: center;
+	width: 1200px;
+	position: relative;
+	margin:auto;
+}
+
+.product_submit{
+	width: 100px;
+	height: 30px;
+	margin-bottom: 50px;
+	color: #fff;
+	background-color: #68afff;
+	border: 0px solid #00336a;
+	font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    border-radius: 30px;
+}
+
+.product_submit:hover{
+	background-color: #00336a;
+}
+
+
+input#p_name,#p_brand{
+	border: 2px solid #68afff;
+	width : 500px;
+	height: 40px;
+	margin-bottom: 30px;
+	font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    border-radius: 30px;
+}
+
+input#p_price,#p_stock{
+	border: 2px solid #68afff;
+	width : 230px;
+	height: 40px;
+	margin-right:12px;
+	margin-left:12px;
+	margin-bottom: 30px;
+	font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    border-radius: 30px;
+}
+
+select#p_color,#category_id,#p_sex{
+	border: 2px solid #68afff;
+	margin-bottom: 30px;
+	height: 40px;
+	width: 145px;
+	margin-right:13px;
+	margin-left:13px;
+	font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    border-radius: 20px;
+}
+
+select option{
+	background-color: #68afff;
+	color: #fff;
+}
+
+select option#first{
+	background-color: #00336a;
+	color: #ffff;
+}
+
+.inputpic label{
+	width: 135px;
+	height: 35px;
+	padding-bottom:4px;
+	display: inline-block;
+	color: #fff;
+	line-height: 45px;
+	vertical-align: middle;
+	background-color: #68afff;
+	cursor: pointer;
+	border: 0px solid #00336a;
+	text-align: center;
+	border-radius: 30px;
+}
+
+div.p_thumb{
+	margin-top: 20px;
+}
+
+div.p_image1{
+
+}
+
+div.p_image2{
+
+
+}
+
+div.p_image3{
+
+}
+
+div.p_contents{
+
+}
+
+.inputpic input[type="file"]{
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+img#select_img1,#select_img2,#select_img3,#select_img4,#select_img5{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
