@@ -2,9 +2,11 @@
 
 
 div.productlist{
-	float:right;
+
 	top:-270px;
 	left: -240px;
+	margin-left : 600px;
+	width : 1250px;
 	position:relative;
 }
 
@@ -63,3 +65,25 @@ li#listli{
 	width:25%;
 	margin-bottom: 50px;
  }
+/* search */
+ 
+ .container1{
+float : left;
+left : 50px;
+
+}
+.container2{
+	float : right;
+}
+.form-control{
+	bottom : 10px;
+	margin: 5px;
+}
+input{
+width: 300px;}
+select{
+width: 80px;}
+#buttona{
+border: 1px solid;
+width: 70px;
+}

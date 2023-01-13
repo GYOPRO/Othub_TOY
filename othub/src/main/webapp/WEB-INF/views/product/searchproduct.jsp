@@ -19,7 +19,6 @@ $(document).ready(function() {
 });//ready end
 
 
-
 </script>
 </head>
 <body>
@@ -27,20 +26,18 @@ $(document).ready(function() {
 <!-- navbar include -->
 	<%@include file="../include/navbar.jsp" %>
 	<%@include file="categorybar.jsp" %>
-	
-	<section class="listcontent">
 
-
+<section class="listcontent">
 
 <c:forEach items="${recom}" var="recom" end="0" >
 <div class="productlist">
 <div class="container">
 		<div class="row">
-			<form method="get" name="search" action="searchproduct">
+			<form method="Get" name="search" action="searchproduct">
 				<table class="pull-right">
 					<tr>
 						<td><input type="text" class="form-control"
-							placeholder="검색어 입력" name="p_name" maxlength="100" id="inputbox"></td>
+							placeholder="검색어 입력" name="searchText" maxlength="100" id="inputbox"></td>
 						<td><button type="submit" class="btn btn-success" id="buttona">검색</button></td>
 					</tr>
 
@@ -56,39 +53,45 @@ $(document).ready(function() {
 </div>
 </c:forEach>
 
-<ul id="product" class="recent">
 
-   <c:forEach items="${recent}" var="recent">
+ <ul id="product" class="item">
+  <c:forEach items="${recom}" var="recom">
+  
    <li id="listli">
-   
     <div class="p_thumb">
-     <a href="productdetail?p_id=${recent.p_id }"> <img src="images/${recent.p_thumb}"></a>
-    </div>  
+      <a href="productdetail?p_id=${recom.p_id }"> <img src="images/${recom.p_thumb}"> </a>
+    </div>
      
     <div class="p_name">
-     <a href="productdetail?p_id=${recent.p_id }">${recent.p_name}</a>
+     <a href="productdetail?p_id=${recom.p_id }">${recom.p_name}</a>
     </div>
     
     <div class="p_brand">
-     📍 ${recent.p_brand}
+     📍 ${recom.p_brand}
      </div>
      
     <div class="p_price">
-     💰 <fmt:formatNumber value="${recent.p_price}" pattern="#,###" />
+     💰 <fmt:formatNumber value="${recom.p_price}" pattern="#,###" />
     </div>
     
     <div class="p_like">
-     💗 ${recent.p_like}
+     💗 ${recom.p_like}
     </div>
     
    </li>
    </c:forEach>
-</ul>
-
-</section>
-
-<!-- chatbot include -->
+   
+   <!-- chatbot include -->
 		<%@include file="../chatbot/chatbot.jsp" %>
+
+    
+   </ul>
+  </section> 
+
+
+
+
+
 
 <!-- footer include -->
 	<%@include file="../include/footer.jsp" %>

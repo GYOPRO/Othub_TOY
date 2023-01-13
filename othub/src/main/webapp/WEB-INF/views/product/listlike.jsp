@@ -30,11 +30,27 @@ $(document).ready(function() {
 
 <section class="listcontent">
 
-<c:forEach items="${like}" var="like" end="0" >
+<c:forEach items="${recom}" var="recom" end="0" >
 <div class="productlist">
- <a href="/listrecent?c=${like.category_id}"> 최신순 </a> &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
- <a href="/listlike?c=${like.category_id}"> 인기순 </a> &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
- <a href="/listrecom?c=${like.category_id}"> 추천순 </a>
+<div class="container">
+		<div class="row">
+			<form method="get" name="search" action="searchproduct">
+				<table class="pull-right">
+					<tr>
+						<td><input type="text" class="form-control"
+							placeholder="검색어 입력" name="p_name" maxlength="100" id="inputbox"></td>
+						<td><button type="submit" class="btn btn-success" id="buttona">검색</button></td>
+					</tr>
+
+				</table>
+			</form>
+		</div>
+	</div>
+	<div class = "container2">
+ <a href="/listrecent?c=${recom.category_id}"> 최신순 </a> &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+ <a href="/listlike?c=${recom.category_id}"> 인기순 </a> &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+ <a href="/listrecom?c=${recom.category_id}"> 추천순 </a>
+ </div>
 </div>
 </c:forEach>
 

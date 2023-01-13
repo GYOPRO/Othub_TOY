@@ -86,7 +86,19 @@ public class ProductController {
 			return mv;
 		 }
 	 
-	 
+	 //검색기능
+		 @RequestMapping(value = "/searchproduct", method = RequestMethod.GET)
+		 public ModelAndView searchproduct(String p_name, Model model) {
+			 
+			  List<ProductDTO> list = null;
+				list = productService.searchproduct(p_name);
+			 
+			  model.addAttribute("recom", list);
+			  	System.out.println(p_name);
+			  	ModelAndView mv = new ModelAndView();
+				mv.setViewName("product/searchproduct");
+				return mv;
+		 }
 	 
 	}
 	

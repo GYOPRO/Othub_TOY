@@ -28,7 +28,6 @@ $(document).ready(function() {
 	<%@include file="categorybar.jsp" %>
 
 <section class="listcontent">
-
 <c:forEach items="${list}" var="list" end="0" >
 <div class="productlist">
  <a href="/listrecent?c=${list.category_id}"> 최신순 </a> &nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp

@@ -18,6 +18,7 @@ public interface ProductDAO {
 	  List<ProductDTO> orderByRecent(int category_id);
 	  List<ProductDTO> orderByRecom(int category_id);
 	  
+	  public List<ProductDTO> searchproduct(String p_name);
 	 
 
 }

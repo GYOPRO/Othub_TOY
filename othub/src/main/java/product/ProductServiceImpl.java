@@ -81,6 +81,13 @@ public class ProductServiceImpl implements ProductService {
 		return null;
 	}
 
+
+	@Override
+	public List<ProductDTO> searchproduct(String p_name) {
+		return productDao.searchproduct(p_name);
+	}
+
+	
 	/*
 	 * @Override public List<ProductDTO> list(int category_id) throws Exception {
 	 * return productDao.list(category_id); }
