@@ -5,8 +5,8 @@
 	
 <!-- 회원가입 -->
 <insert id="insertMember" parameterType="memberdto" >
- insert into member(m_id,m_pw,m_name,m_address,m_phone,m_email,m_sex) 
- values (#{m_id},#{m_pw},#{m_name},#{m_address},#{m_phone},#{m_email},#{m_sex}) 
+ insert into member(m_id,m_pw,m_name,m_address1,m_address2,m_phone,m_email,m_sex) 
+ values (#{m_id},#{m_pw},#{m_name},#{m_address1},#{m_address2},#{m_phone},#{m_email},#{m_sex}) 
 </insert>
 
 <!-- 회원가입확인 -->
@@ -21,7 +21,7 @@
 
 <!-- 회원정보수정 -->
 <update id="updateMember" parameterType="memberdto" >
-	update member set m_id=#{m_id}, m_name=#{m_name},m_address=#{m_address} ,m_phone=#{m_phone}, m_email=#{m_email} where m_id=#{m_id}
+	update member set m_id=#{m_id}, m_name=#{m_name},m_address1=#{m_address1},m_address2=#{m_address2} ,m_phone=#{m_phone}, m_email=#{m_email} where m_id=#{m_id}
 </update>
 
 <!-- 아이디체크 -->
@@ -37,7 +37,7 @@ delete from member where m_id=#{m_id}
 <!-- 모든 회원정보 조회 -->
 <!-- 회원리스트 조회 -->
 <select id="selectMemberList" resultType="memberdto">
-	select m_id,m_pw,m_name,m_email,m_phone,m_sex,m_address,m_regdate,role1 from member order by role1
+	select m_id,m_pw,m_name,m_email,m_phone,m_sex,m_address1,m_address2,m_address3,m_regdate,role1 from member order by role1
 </select>
 
 <!-- 관리자 회원정보 수정 -->
@@ -52,7 +52,7 @@ delete from member where m_id=#{m_id}
 
 <!-- 일반 회원 조회 -->
 <select id="selectUserList" resultType="memberdto">
-	select m_id,m_pw,m_name,m_email,m_phone,m_sex,m_address,m_regdate,role1,role2 from member where role1 = 'user' order by field(role2, 'vip','gold','silver')
+	select m_id,m_pw,m_name,m_email,m_phone,m_sex,m_address1,m_address2,m_address3,m_regdate,role1,role2 from member where role1 = 'user' order by field(role2, 'vip','gold','silver')
 </select>
 
 <!-- 일반 회원 등급 변경 -->

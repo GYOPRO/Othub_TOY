@@ -3,6 +3,7 @@ package community;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -120,7 +121,17 @@ public class CommunityController {
 		System.out.println(totalboard);
 		List<ProductDTO> productTagList1 = commuserive.productTag1();
 		ModelAndView mv = new ModelAndView();
-
+		List<ProductDTO> productname1 = commuserive.selectproduct1();
+		List<ProductDTO> productname2 = commuserive.selectproduct2();
+		List<ProductDTO> productname3 = commuserive.selectproduct3();
+		List<ProductDTO> productname4 = commuserive.selectproduct4();
+		List<ProductDTO> productname5 = commuserive.selectproduct5();
+		mv.addObject("product1" , productname1);
+		mv.addObject("product2" , productname2);
+		mv.addObject("product3" , productname3);
+		mv.addObject("product4" , productname4);
+		mv.addObject("product5" , productname5);
+		System.out.println(productname1);
 		mv.addObject("taglist1",productTagList1);
 		mv.addObject("totalboard", totalboard);
 		mv.setViewName("community/srwritingform");
@@ -202,18 +213,21 @@ public class CommunityController {
 		
 		//게시물 불러오기
 		CommunityDTO oneCommu = commuserive.oneCommunity(s_seq);
-
+		
 		//상품 태그 불러오기
 		if(oneCommu.p_name1!=null) {
 		List<ProductDTO> tag1 = commuserive.selectProductTag1(oneCommu.p_name1);
 		p_name1 = oneCommu.p_name1;
 		mv.addObject("p_name1",p_name1);
 		mv.addObject("tag1",tag1);
+		System.out.println(p_name1);
+		System.out.println(tag1);
 		}if(oneCommu.p_name2 != null){
 		List<ProductDTO> tag2 = commuserive.selectProductTag2(oneCommu.p_name2);
 		p_name2 = oneCommu.p_name2;
 		mv.addObject("tag2",tag2);
 		mv.addObject("p_name2",p_name2);
+		
 		}if(oneCommu.p_name3 != null){
 		List<ProductDTO> tag3 = commuserive.selectProductTag3(oneCommu.p_name3);
 		p_name3 = oneCommu.p_name3;
@@ -226,7 +240,8 @@ public class CommunityController {
 		mv.addObject("p_name4",p_name4);
 		}
 		
-		//ai pose
+		//session
+		session.setAttribute("recentlist", oneCommu.s_seq);
 
 		
 		String writer = oneCommu.getS_writer();

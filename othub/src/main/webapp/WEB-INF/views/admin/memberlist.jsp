@@ -40,6 +40,7 @@
                   <th>아이디</th>
                   <th>비밀번호</th>
                   <th>이름</th>
+                  <th>우편번호</th>
                   <th>주소</th>
                   <th>폰</th>
                   <th>이메일</th>
@@ -56,7 +57,8 @@
                   <td><input type="text" value="${member.m_id}" name="m_id"></td>
                   <td>${member.m_pw }</td>
                   <td>${member.m_name }</td>
-                  <td>${member.m_address }</td>
+                  <td>${member.m_address1 }</td>
+                  <td>${member.m_address2 }</td>
                   <td>${member.m_phone}</td>
                   <td>${member.m_email }</td>
                   <td>${member.m_sex}</td>

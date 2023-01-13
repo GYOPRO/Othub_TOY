@@ -5,7 +5,10 @@ public class MemberDTO {
 	String m_id; 
 	String m_pw;
 	String m_name;
-	String m_address; 
+	int m_address1; 
+	String m_address2,m_address3; 
+
+
 	String m_phone; 
 	String m_email; 
 	String m_sex;
@@ -15,18 +18,36 @@ public class MemberDTO {
 	
 	public MemberDTO(){ }
 	
-	public MemberDTO(String m_id, String m_pw, String m_name,String m_address, String m_phone, String m_email, String m_sex ,String m_regdate) {
+	public MemberDTO(String m_id, String m_pw, String m_name,int m_address1,String m_address2,String m_address3, String m_phone, String m_email, String m_sex ,String m_regdate) {
 		super();
 		this.m_id = m_id;
 		this.m_pw = m_pw;
 		this.m_name = m_name;
-		this.m_address = m_address;
+		this.m_address1 = m_address1;
+		this.m_address2 = m_address2;
+		this.m_address3 = m_address3;
 		this.m_phone = m_phone;
 		this.m_email = m_email;
 		this.m_sex = m_sex;
 		this.m_regdate = m_regdate;
 	}
 
+	public int getM_address1() {
+		return m_address1;
+	}
+
+	public void setM_address1(int m_address1) {
+		this.m_address1 = m_address1;
+	}
+
+	public String getM_address2() {
+		return m_address2;
+	}
+
+	public void setM_address2(String m_address2) {
+		this.m_address2 = m_address2;
+	}
+	
 	public String getM_id() {
 		return m_id;
 	}
@@ -67,14 +88,6 @@ public class MemberDTO {
 
 	public void setM_name(String m_name) {
 		this.m_name = m_name;
-	}
-
-	public String getM_address() {
-		return m_address;
-	}
-
-	public void setM_address(String m_address) {
-		this.m_address = m_address;
 	}
 
 	public String getM_phone() {

@@ -32,7 +32,10 @@ public interface CommunityDAO {
 	
 	// 좋아요한 게시물
 		public List<CommunityDTO> myLikeCommunity(String m_id);
-	
+		
+	// 태그 불러오기
+		public CommunityDTO tagList(int s_seq);
+		
 	// 좋아요 중복 확인
 		public int likeCount(int seq);
 		
@@ -103,5 +106,12 @@ public interface CommunityDAO {
 	
 	//내가 쓴 댓글
 		public List<CommentDTO> mycomment(String m_id);
+		
+	//상품 가져오기
+		public List<ProductDTO> selectproduct1();
+		public List<ProductDTO> selectproduct2();
+		public List<ProductDTO> selectproduct3();
+		public List<ProductDTO> selectproduct4();
+		public List<ProductDTO> selectproduct5();
 
 }

@@ -1,7 +1,9 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Date"%>
+<%@page import="java.util.*"%>
 <%@page import="community.CommunityDTO"%>
 <%@page import="javax.xml.crypto.Data"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
@@ -146,151 +148,9 @@ $(document).ready(function() {
 });//ready end
 </script>
 
-<!-- pose1 -->
-<script>
-$(document).ready(function() {
-	var json = JSON.parse('${poseresult}');
-	
-	//canvas 작업
-	var mycanvas = document.getElementById("mycanvas");
-	var mycontext = mycanvas.getContext("2d");
-	
-	var myimage = new Image();
-	myimage.src = "images/community/styleimg/${param.image }";
-	if(myimage.width > mycanvas.width){
-		mycanvas.width = myimage.width;
-	}	
-	if(myimage.height > mycanvas.height){
-		mycanvas.height = myimage.height;
-	}	
-	
-	myimage.onload = function(){//이미지 그릴 준비 대기
-		mycontext.drawImage(myimage, 0, 0, myimage.width, myimage.height);
-	//	bodyinforms 신체부위이름, 위치점 표시. colors 색상으로 각 신체부위별 다르게 표시
-		var x = json.predictions[0][2].x * myimage.width ;
-		var y = json.predictions[0][2].y * myimage.height;
-
-
-		
-		var imagedata1 = mycontext.getImageData(x,y,mycanvas.width,mycanvas.height)
-
-
-		$("#red").val(imagedata1.data[0]);
-		$("#green").val(imagedata1.data[1]);
-		$("#blue").val(imagedata1.data[2]);
-
-
-	}//onload
-});//ready end
-</script>
-<!-- pose2 하의 -->
-<script>
-$(document).ready(function() {
-	var json = JSON.parse('${poseresult}');
-	
-
-	if(json.predictions[0][12] == null){
-		$("#bottom").attr("type","hidden");
-	}
-	//canvas 작업
-	var mycanvas = document.getElementById("mycanvas3");
-	var mycontext = mycanvas.getContext("2d");
-		
-	
-	var myimage = new Image();
-	myimage.src = "images/community/styleimg/${param.image }";
-	if(myimage.width > mycanvas.width){
-		mycanvas.width = myimage.width;
-	}	
-	if(myimage.height > mycanvas.height){
-		mycanvas.height = myimage.height;
-	}	
-	
-	myimage.onload = function(){//이미지 그릴 준비 대기
-		mycontext.drawImage(myimage, 0, 0, myimage.width, myimage.height);
-	//	bodyinforms 신체부위이름, 위치점 표시. colors 색상으로 각 신체부위별 다르게 표시
-
-		var a = json.predictions[0][12].x * myimage.width ;
-		var b = json.predictions[0][12].y * myimage.height;
-
-
-		var imagedata2 = mycontext.getImageData(a,b,mycanvas.width,mycanvas.height)
-		$("#red3").val(imagedata2.data[0]);
-		$("#green3").val(imagedata2.data[1]);
-		$("#blue3").val(imagedata2.data[2]);
 
 
 
-	}//onload
-});//ready end
-</script>
-<!-- object -->
-<script>
-$(document).ready(function() {
-	var json = JSON.parse('${objectresult}');
-	
-	var result = false
-	for(var i = 0; i< json.predictions[0].num_detections ; i++){
-		if(json.predictions[0].detection_names[i] == "backpack"){
-			result = true;
-		}
-	}
-	if(result == false){
-		$("#back").attr("type","hidden");
-	}
-
-	
-	if(json == null){
-		$("#back").attr("type","hidden");
-	}
-	var mycanvas = document.getElementById("mycanvas2");
-	var mycontext = mycanvas.getContext("2d");
-	
-	var myimage = new Image();
-	myimage.src = "images/community/styleimg/${param.image }";
-	
-	myimage.onload = function(){
-		
-		mycontext.drawImage(myimage, 0, 0, myimage.width, myimage.height);
-			var y1 = json.predictions[0].detection_boxes[1][0] * myimage.height;
-			var x1 = json.predictions[0].detection_boxes[1][1] * myimage.width;
-			var y2 = json.predictions[0].detection_boxes[1][2] * myimage.height;
-			var x2 = json.predictions[0].detection_boxes[1][3] * myimage.width;		
-			// 사물 박스 그리기
-			var x = x1;
-			var y = y1;
-			var width = x2 - x1;
-			var height = y2 - y1;
-			var x3 = (x1+x2)/2;
-			var y3 = (y1+y2)/2;
-			
-			if(myimage.width > mycanvas.width){
-				mycanvas.width = myimage.width;
-			}	
-			if(myimage.height > mycanvas.height){
-				mycanvas.height = myimage.height;
-			}
-			
-			if(json.predictions[0].detection_names.includes("backpack") == true){
-			mycontext.fillStyle="red";
-			mycontext.fillRect(x3,y3-50,5,5);
-			
-			var imagedata = mycontext.getImageData(x,y,mycanvas.width,mycanvas.height)
-			$("#red2").val(imagedata.data[0]);
-			$("#green2").val(imagedata.data[1]);
-			$("#blue2").val(imagedata.data[2]);
-			//사물이름 출력
-			mycontext.fillStyle="red";
-			mycontext.font="12px batang";
-			mycontext.fillText(json.predictions[0].detection_names[1], x3, y3);
-			}
-
-	
-
-	}//onload
-	
-});//ready end
-</script>
 </head>
 <%String p_name1 = (String)request.getAttribute("p_name1");
 String p_name2 = (String)request.getAttribute("p_name2");
@@ -299,6 +159,7 @@ String p_name4 = (String)request.getAttribute("p_name4");
 String image2 = (String)request.getAttribute("image2");
 String image3 = (String)request.getAttribute("image3");%>
 <body>
+
 <!-- navbar include -->
 	<%@include file="../include/navbar.jsp" %>
 		<!-- chatbot include -->
@@ -363,8 +224,7 @@ String image3 = (String)request.getAttribute("image3");%>
             
             
             <!-- 상품태그 -->
- 
-            
+ 			<% if(p_name1 != null) {%>
             <div id="container">
    			<div class="inner">
    			<h2>상품 태그</h2>
@@ -373,7 +233,7 @@ String image3 = (String)request.getAttribute("image3");%>
             <div class="card">
                <div class="img"> <a href="productdetail?p_id=${tag1.get(0).getP_id() }"><img src="images/${tag1.get(0).getP_thumb()}"></a></div>
                 <div class="txt_box">
-                    <h2>${tag1.get(0).getP_name()}</h2>
+                    <h2>${p_name1}</h2>
                     <ol class="clearfix">
                         <li class="fl">
                            <p> ${tag1.get(0).getP_price()} 원</p>
@@ -424,7 +284,7 @@ String image3 = (String)request.getAttribute("image3");%>
             </div>
             </div>
             </div>
-
+			<%} %>
             <!-- 댓글 -->
             <div class="comment_box">
                 <div class="clearfix">

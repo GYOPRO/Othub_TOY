@@ -61,6 +61,9 @@ public class CommunityService {
 	public List<CommunityDTO> myLikeCommunity(String m_id) {
 		return dao.myLikeCommunity(m_id);
 	}
+	public CommunityDTO tagList(int s_seq){
+		return dao.tagList(s_seq);
+	}
 	
 	//게시판 저장
 	public int insertCommunity(CommunityDTO dto) {
@@ -178,5 +181,21 @@ public class CommunityService {
 	//내가 쓴 댓글
 	public List<CommentDTO> mycomment(String m_id){
 		return dao.mycomment(m_id);
+	}
+	//상품 가져오기
+	public List<ProductDTO> selectproduct1(){
+		return dao.selectproduct1();
+	}
+	public List<ProductDTO> selectproduct2(){
+		return dao.selectproduct2();
+	}
+	public List<ProductDTO> selectproduct3(){
+		return dao.selectproduct3();
+	}
+	public List<ProductDTO> selectproduct4(){
+		return dao.selectproduct4();
+	}
+	public List<ProductDTO> selectproduct5(){
+		return dao.selectproduct5();
 	}
 }

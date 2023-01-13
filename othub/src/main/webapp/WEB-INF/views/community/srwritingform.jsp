@@ -33,61 +33,17 @@ $(document).ready(function() {
 
 <script type="text/javascript">
 function itemChange(){ 
-	var top = [
-		'카라 크롭 스웻셔츠',
-		'스퀘어 넥 크롭 롱 슬리브',
-		'스트릿로즈 반팔티',
-		'베이직 긴팔 티셔츠 보이즈',
-		'시그니처 로고 스웻셔츠',
-		'아코 베어 스탠다드 티셔츠',
-		'더블코튼 무지 오버핏 긴팔티',
-		'컬시브 로고 롱 슬리브 티셔츠',
-		'올드 아이비 클래식 카라 하프 티셔츠',
-		'NY 테니스 긴팔 티셔츠'];
-	var bottom = [
-		'와이드핏 메이플 진',
-		'쿨링 와이드 밴딩팬츠',
-		'커버밴드 슬림 루즈 부츠컷 데님',
-		'하프 밴딩 플리츠 스커트',
-		'롱 플레어 샤 스커트',
-		'사이드 컷팅 스웨트 팬츠',
-		'투라인 와이드 트랙팬츠',
-		'SINCE LOGO 특양면 조거 팬츠',
-		'카펜터 카고 팬츠 더스티퍼플',
-		'인텐드 데님팬츠 흑청',];
-	var outer = [
-		'슬림핏 니트 집업 가디건',
-		'컴파이 플리스 자켓',
-		'더블 포켓 나일론 집업',
-		'크롭 가디건 셋업',
-		'베이직 브이넥 가디건',
-		'플리스 아우터',
-		'덤보 기모 스웨트 집업',
-		'무지 더블코튼 맨투맨 가디건',
-		'리버시블 아이코닉 벙커 점퍼',
-		'벨벳 리버시블 덕다운 숏패딩']; 
-	var shoes = [
-		'플랫폼 아웃솔 스판 앵클 부츠',
-		'모니카 스니커즈 데이지',
-		'스코츠데일 홀스빗 로퍼 우먼',
-		'프레즐 스틱',
-		'크림든 롱부츠',
-		'키높이 소가죽 독일군 스니커즈',
-		'리커버리 슬라이드 샌들',
-		'돔바 올 라운드',
-		'MIGHTY BLACK',
-		'코니 플레인']; 
-	var bag = [
-		'Amber bag - S022',
-		'Thyme bag - D1045',
-		'모그 숄더백',
-		'zuri bag',
-		'Mellow 멜로',
-		'Retro Sport Bag',
-		'4way tote bag',
-		'아그네스 메신저백',
-		'톱스티치 레더 핸들 크로스 바디백',
-		'MESH STRING BACKPACK']; 
+	var str1 = '${product1}'.split('[').join('').split(']').join(''); //양끝 문자열 제거
+	var str2 = '${product2}'.split('[').join('').split(']').join(''); //양끝 문자열 제거
+	var str3 = '${product3}'.split('[').join('').split(']').join(''); //양끝 문자열 제거
+	var str4 = '${product4}'.split('[').join('').split(']').join(''); //양끝 문자열 제거
+	var str5 = '${product5}'.split('[').join('').split(']').join(''); //양끝 문자열 제거
+	
+	var top = str1.split(",");
+	var bottom = str2.split(",");
+	var outer = str3.split(",");
+	var shoes = str4.split(",");
+	var bag = str5.split(",");
 	var selectItem = $("#select1").val(); 
 	var changeItem; 
 	
@@ -114,6 +70,7 @@ function itemChange(){ 
 		} 
 		}
 </script>
+
 </head>
 <body>
 	<!-- navbar include -->
@@ -129,7 +86,7 @@ function itemChange(){ 
 	<!-- main container -->
 	<main class="sr_write_main" >
 		<section class="writingform">
-			<form action="writingcommunity" method="post" enctype="multipart/form-data" name="myForm">
+			<form action="writingcommunity" method="post" enctype="multipart/form-data" name="myForm" onsubmit="goSubmit()">
 				<h3 class="h3">Look-Book</h3>
 				<span class="wrt_info">
 					<span>⭐ No.${totalboard } </span>
@@ -183,7 +140,7 @@ function itemChange(){ 
 				</div>
 
 				<input type="hidden" name="s_writer" value="<%=session.getAttribute("m_id")%>">
-				<button class="sr_write_btn" type="submit" onclick="goSubmit()">작성하기</button>
+				<button class="sr_write_btn" type="submit" >작성하기</button>
 			</form>
 		</section>
 	</main>
@@ -191,6 +148,12 @@ function itemChange(){ 
 	<!-- footer include -->
 	<%@include file="../include/footer.jsp"%>
 </body>
+<script>
+var p_name1 = $("#p_name1").val;
+if(p_name1=""){
+	alert("한개 이상의 태그를 선택해주세요");
+} 
+</script>
 <script>
 	//ckeditor 생성
 	ClassicEditor

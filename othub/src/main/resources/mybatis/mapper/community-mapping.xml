@@ -42,6 +42,10 @@
 		from boardlike inner join styletab on boardlike.s_seq = styletab.s_seq where boardlike.m_id = #{m_id};
 	</select>
 	
+	<!-- 태그 불러오기 -->
+	<select id="tagList" resultType="communitydto">
+		select p_name1,p_name2,p_name3,p_name4 from styletab where s_seq = #{s_seq}
+	</select>
 	
 	<!-- 게시물 저장 -->
 	<insert id="insertCommunity" parameterType="communitydto" >
@@ -85,7 +89,23 @@
 		on  product.p_name = styletab.p_name4
 		where product.p_name = #{p_name4};
 	</select>
+	<!-- 상품 카테고리별 받기 -->
 	
+	<select id="selectproduct1" resultType="product.ProductDTO" >
+		select p_name from product where category_id =1;
+	</select>
+	<select id="selectproduct2" resultType="product.ProductDTO" >
+		select p_name from product where category_id =2;
+	</select>
+	<select id="selectproduct3" resultType="product.ProductDTO" >
+		select p_name from product where category_id = 3;
+	</select>
+	<select id="selectproduct4" resultType="product.ProductDTO" >
+		select p_name from product where category_id = 4;
+	</select>
+	<select id="selectproduct5" resultType="product.ProductDTO" >
+		select p_name from product where category_id = 5;
+	</select>
 	
 	<!-- 게시물 수정(제목, 내용, 날짜만) -->
 	<update id="updateWriting">
