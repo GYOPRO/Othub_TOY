@@ -5,8 +5,8 @@
 	
 <!-- 회원가입 -->
 <insert id="insertMember" parameterType="memberdto" >
- insert into member(m_id,m_pw,m_name,m_address1,m_address2,m_phone,m_email,m_sex) 
- values (#{m_id},#{m_pw},#{m_name},#{m_address1},#{m_address2},#{m_phone},#{m_email},#{m_sex}) 
+ insert into member(m_id,m_pw,m_name,m_address1,m_address2,m_address3,m_phone,m_email,m_sex) 
+ values (#{m_id},#{m_pw},#{m_name},#{m_address1},#{m_address2},#{m_address3},#{m_phone},#{m_email},#{m_sex}) 
 </insert>
 
 <!-- 회원가입확인 -->
@@ -21,7 +21,7 @@
 
 <!-- 회원정보수정 -->
 <update id="updateMember" parameterType="memberdto" >
-	update member set m_id=#{m_id}, m_name=#{m_name},m_address1=#{m_address1},m_address2=#{m_address2} ,m_phone=#{m_phone}, m_email=#{m_email} where m_id=#{m_id}
+	update member set m_id=#{m_id}, m_name=#{m_name},m_address1=#{m_address1},m_address2=#{m_address2},m_address3=#{m_address3} ,m_phone=#{m_phone}, m_email=#{m_email} where m_id=#{m_id}
 </update>
 
 <!-- 아이디체크 -->

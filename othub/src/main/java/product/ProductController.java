@@ -1,5 +1,6 @@
 package product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -88,13 +89,22 @@ public class ProductController {
 	 
 	 //검색기능
 		 @RequestMapping(value = "/searchproduct", method = RequestMethod.GET)
-		 public ModelAndView searchproduct(String p_name, Model model) {
+		 public ModelAndView searchproduct(String searchField,String searchText, Model model) {
 			 
-			  List<ProductDTO> list = null;
-				list = productService.searchproduct(p_name);
-			 
+			  List<ProductDTO> list = new ArrayList<>();
+				
+				
+				if(searchField.equals("p_name")) {
+					list = productService.searchproduct(searchText);
+				}
+				if(searchField.equals("p_brand")) {
+					list = productService.searchbrand(searchText);
+				}
+				System.out.println(searchField);
+				System.out.println(searchText);
+				System.out.println(list);
 			  model.addAttribute("recom", list);
-			  	System.out.println(p_name);
+
 			  	ModelAndView mv = new ModelAndView();
 				mv.setViewName("product/searchproduct");
 				return mv;

@@ -36,6 +36,14 @@ $(document).ready(function() {
 			<form method="Get" name="search" action="searchproduct">
 				<table class="pull-right">
 					<tr>
+						<td>
+							<select class="form-control" name="searchField" id="selectbox">
+									<option value="">--</option>
+									<option value="p_name">상풍명</option>
+									<option value="p_brand">브랜드</option>
+	
+							</select>
+						</td>
 						<td><input type="text" class="form-control"
 							placeholder="검색어 입력" name="searchText" maxlength="100" id="inputbox"></td>
 						<td><button type="submit" class="btn btn-success" id="buttona">검색</button></td>

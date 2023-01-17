@@ -67,6 +67,10 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductDTO> searchproduct(String p_name) {
 		return sqlSession.selectList(namespace + ".searchproduct", p_name);
 	}
+	@Override
+	public List<ProductDTO> searchbrand(String p_brand) {
+		return sqlSession.selectList(namespace + ".searchbrand",p_brand);
+	}
 	
 	@Override
 	public int updateProduct(ProductDTO dto) {
@@ -92,7 +96,7 @@ public class ProductDAOImpl implements ProductDAO {
 		return null;
 	}
 
-
+	
 
 
 	

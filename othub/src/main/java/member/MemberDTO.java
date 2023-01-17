@@ -48,6 +48,14 @@ public class MemberDTO {
 		this.m_address2 = m_address2;
 	}
 	
+	public String getM_address3() {
+		return m_address3;
+	}
+
+	public void setM_address3(String m_address3) {
+		this.m_address3 = m_address3;
+	}
+	
 	public String getM_id() {
 		return m_id;
 	}

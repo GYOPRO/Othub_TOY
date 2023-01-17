@@ -19,4 +19,5 @@ public interface ProductService {
 	  List<ProductDTO> orderByRecom(int category_id);
 
 	  public List<ProductDTO> searchproduct(String p_name);
+	  public List<ProductDTO> searchbrand(String p_brand);
 }

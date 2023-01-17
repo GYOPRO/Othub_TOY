@@ -334,9 +334,7 @@ public class CommunityController {
 				communityListPaging = commuserive.searchcontents(searchText);
 			}
 			ModelAndView mv = new ModelAndView();
-			System.out.println(searchField);
-			System.out.println(searchText);
-			System.out.println(communityListPaging);
+			
 			mv.addObject("boardlist",communityListPaging);
 			mv.setViewName("community/serachboard");
 			return mv;

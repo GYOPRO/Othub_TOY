@@ -86,7 +86,11 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductDTO> searchproduct(String p_name) {
 		return productDao.searchproduct(p_name);
 	}
-
+	
+	@Override
+	public List<ProductDTO> searchbrand(String p_brand) {
+		return productDao.searchbrand(p_brand);
+	}
 	
 	/*
 	 * @Override public List<ProductDTO> list(int category_id) throws Exception {

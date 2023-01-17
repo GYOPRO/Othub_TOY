@@ -43,6 +43,7 @@
                 <input id="btnLogin" type="submit" value="Log in" style="background-color: #2186db;">
                 <!-- 네이버 아이디 로그인 버튼 노출 영역 -->
                 <div id="naver_id_login"></div>
+                <a herf="#"><img src="images/kakao_login_medium_narrow.png"/></a>
                 <c:if test="${message == 'error'}">
  					<div style="color:red;"> 아이디 또는 비밀번호가 일치하지 않습니다.
  					</div>

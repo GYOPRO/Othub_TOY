@@ -53,9 +53,9 @@ $(document).ready(function(){
                 <label>이름</label>
                 <input type="text" name="m_name" placeholder="이름" id="m_name">
                 <label>주소</label>
-                <input id="member_post"  type="text" name="m_address" placeholder="우편번호 (주소를 검색하려면 클릭해주세요)" onclick="findAddr()"><br>
+                <input id="member_post"  type="text" name="m_address1" placeholder="우편번호 (주소를 검색하려면 클릭해주세요)" onclick="findAddr()"><br>
                 <input id="member_addr" type="text" name="m_address2" placeholder="주소를 입력해주세요." readonly> <br>
-                <input id="m_adress3" type="text" name="m_address3" placeholder="상세 주소를 입력해주세요." > <br>
+                <input id="m_address3" type="text" name="m_address3" placeholder="상세 주소를 입력해주세요." > <br>
                 <label>폰번호</label>
                 <input type="text" name="m_phone" placeholder="010-1234-5678" id = "m_phone" required pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" maxlength="13">
                 <label>이메일</label>

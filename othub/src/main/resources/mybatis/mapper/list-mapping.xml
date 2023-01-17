@@ -42,11 +42,15 @@
         order by p_stock*3 + p_like*2 + p_viewcount desc
 	</select>
 
-	<!-- 검색기능 -->
+	<!-- 검색기능(상품명) -->
 	<select id="searchproduct" resultType="product.ProductDTO" parameterType="String">
 		 select * from product where p_name like CONCAT('%', #{p_name}, '%') 
 	</select>
-    
+	
+	<!-- 검색기능(브랜드) -->
+    <select id="searchbrand" resultType="product.ProductDTO" parameterType="String">
+    	select * from product where p_brand like CONCAT('%', #{p_brand},'%')
+    </select>
     </mapper>
 
   
